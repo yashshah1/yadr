@@ -3,11 +3,11 @@
  * @license MIT
  */
 
+const SinglyLinkedListNode = require("./SinglyLinkedListNode");
+
 //TODO: Add documentation
 //TODO: Add support for comparision by a custom function
-//TODO: Add find, reverse, filter
-
-const SinglyLinkedListNode = require("./SinglyLinkedListNode");
+//TODO: Add find, reverse
 
 /**
  * @class SinglyLinkedList
@@ -56,9 +56,8 @@ class SinglyLinkedList {
 
     while (curr) {
       if (curr.getValue() == value) {
-        if (curr === this._head) {
-          removedNodeValue = this.deleteFirst();
-        } else {
+        if (curr === this._head) removedNodeValue = this.deleteFirst();
+        else {
           removedNodeValue = curr.getValue();
           prev.setNext(curr.getNext());
 
@@ -87,8 +86,7 @@ class SinglyLinkedList {
           if (curr.getNext() === null) this._tail = prev; // Removed element is the last
         }
         deletedCount++;
-      }
-      prev = curr;
+      } else prev = curr;
       curr = curr.getNext();
     }
     return deletedCount;
@@ -158,6 +156,21 @@ class SinglyLinkedList {
   reset() {
     this._head = null;
     this._tail = null;
+  }
+
+  filter(callback) {
+    //TODO: Isolate the loop into a foreach function
+    if (typeof callback !== "function")
+      throw new Error("callback must be a function");
+    if (this.isEmpty()) return null;
+
+    let returnValue = new SinglyLinkedList();
+    let curr = this._head;
+    while (curr) {
+      if (callback(curr.getValue())) returnValue.append(curr.getValue);
+      curr = curr.getNext();
+    }
+    return returnValue;
   }
 }
 
