@@ -4,12 +4,13 @@
  */
 
 /**
- * @class Array Queue
+ * @class ArrayQueue
  * implements FIFO using JS Arrays
  */
-class Queue {
+class ArrayQueue {
   /**
    * Initialise the class
+   * @constructor
    * @param arr A list of elements to initialise the Queue
    */
   constructor(arr) {
@@ -61,7 +62,7 @@ class Queue {
    * @return {number}
    */
   size() {
-    return this._q.length - this.offset;
+    return this._q.length - this._offset;
   }
 
   /**
@@ -79,4 +80,23 @@ class Queue {
   back() {
     return this._q[this._q.length - 1];
   }
+
+  /**
+   * Returns true if queue is empty
+   * @return {Boolean}
+   */
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  /**
+   * Re initialises the queue
+   * @return {undefined}
+   */
+  reset() {
+    this._q = [];
+    this._offset = 0;
+  }
 }
+
+module.exports = ArrayQueue;
