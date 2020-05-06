@@ -135,11 +135,11 @@ class SinglyLinkedList {
   }
 
   getHead() {
-    return this._head;
+    return this._head.getValue();
   }
 
   getTail() {
-    return this._tail;
+    return this._tail.getValue();
   }
 
   length() {
