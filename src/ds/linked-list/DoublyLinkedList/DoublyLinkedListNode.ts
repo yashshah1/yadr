@@ -9,24 +9,24 @@
  * @class DoublyLinkedListNode
  * A node to be used by the Doubly Linked List
  */
-class DoublyLinkedListNode {
+export default class DoublyLinkedListNode {
   /**
    * @constructor
    * @param {*} value Value stored in the node
    * * @param {(DoublyLinkedListNode|null)} prev The prev node in the Linked List
    * @param {(DoublyLinkedListNode|null)} next The next node in the Linked List
    */
-  constructor(value, prev, next) {
-    this._value = value;
-    this._prev = prev || null;
-    this._next = next || null;
-  }
+  constructor(
+    private _value: any,
+    private _prev: DoublyLinkedListNode | null = null,
+    private _next: DoublyLinkedListNode | null = null,
+  ) {}
 
   /**
    * returns the value of the node
    * @return {*} Value stored in the node
    */
-  getValue() {
+  get value(): any {
     return this._value;
   }
 
@@ -34,7 +34,7 @@ class DoublyLinkedListNode {
    * sets the value of the node
    * @param {*} value Value to be stored in the node
    */
-  setValue(value) {
+  set value(value: any) {
     this._value = value;
   }
 
@@ -42,7 +42,7 @@ class DoublyLinkedListNode {
    * returns the next node
    * @return {(DoublyLinkedListNode|null)} Value stored in the node
    */
-  getNext() {
+  get next(): DoublyLinkedListNode | null {
     return this._next;
   }
 
@@ -50,7 +50,7 @@ class DoublyLinkedListNode {
    * sets the next node
    * @param {(DoublyLinkedListNode|null)} next Reference to the next node
    */
-  setNext(next) {
+  set next(next: DoublyLinkedListNode | null) {
     this._next = next;
   }
 
@@ -58,7 +58,7 @@ class DoublyLinkedListNode {
    * returns the prev node
    * @return {(DoublyLinkedListNode|null)} Value stored in the node
    */
-  getPrev() {
+  get prev(): DoublyLinkedListNode | null {
     return this._prev;
   }
 
@@ -66,9 +66,7 @@ class DoublyLinkedListNode {
    * sets the prev node
    * @param {(DoublyLinkedListNode|null)} prev Reference to the prev node
    */
-  setPrev(prev) {
+  set prev(prev: DoublyLinkedListNode | null) {
     this._prev = prev;
   }
 }
-
-module.exports = DoublyLinkedListNode;
