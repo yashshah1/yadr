@@ -19,6 +19,12 @@ export default class DoublyLinkedList {
     private _tail: DoublyLinkedListNode | null = null,
   ) {}
 
+  static fromArray(elements: any[]): DoublyLinkedList {
+    const list: DoublyLinkedList = new DoublyLinkedList();
+    elements.forEach((element) => list.append(element));
+    return list;
+  }
+
   prepend(value: any): void {
     const nodeToBeAdded: DoublyLinkedListNode = new DoublyLinkedListNode(
       value,
