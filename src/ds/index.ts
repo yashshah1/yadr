@@ -1,3 +1,4 @@
-import * as LinkedList from './linked-list';
-
-export default { LinkedList };
+import LinkedList from './linked-list';
+import Queue from './queue';
+export { LinkedList, Queue };
+export default { LinkedList, Queue };

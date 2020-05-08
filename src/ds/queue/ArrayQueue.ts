@@ -14,7 +14,7 @@ export default class ArrayQueue {
    * @param arr A list of elements to initialise the Queue
    */
   private _offset: number;
-  constructor(private _q: Array<any> = []) {
+  constructor(private _q: any[] = []) {
     this._offset = 0; // To speed up dequeue
   }
 
@@ -44,7 +44,7 @@ export default class ArrayQueue {
      * This should be easier to solve in the linked list version
      *
      */
-    let returnValue: any = this.front();
+    const returnValue: any = this.front();
     this._offset += 1;
 
     if (this._offset * 2 < this._q.length) return returnValue;

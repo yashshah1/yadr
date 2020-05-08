@@ -3,7 +3,7 @@
  * @license MIT
  */
 
-//TODO: Add documentation
+// TODO: Add documentation
 
 /**
  * @class SinglyLinkedListNode
@@ -15,7 +15,10 @@ export default class SinglyLinkedListNode {
    * @param {*} value Value stored in the node
    * @param {(SinglyLinkedListNode|null)} next The next node in the Linked List
    */
-  constructor(private _value: any, private _next: SinglyLinkedListNode | null = null) {}
+  constructor(
+    private _value: any,
+    private _next: SinglyLinkedListNode | null = null,
+  ) {}
 
   /**
    * returns the value of the node

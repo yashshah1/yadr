@@ -1,3 +1,5 @@
-import * as DoublyLinkedList from './DoublyLinkedList';
-import * as SinglyLinkedList from './SinglyLinkedList';
+import DoublyLinkedList from './DoublyLinkedList';
+import SinglyLinkedList from './SinglyLinkedList';
+
 export { SinglyLinkedList, DoublyLinkedList };
+export default { SinglyLinkedList, DoublyLinkedList };

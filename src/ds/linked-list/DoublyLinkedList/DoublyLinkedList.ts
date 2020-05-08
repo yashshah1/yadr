@@ -5,9 +5,9 @@
 
 import DoublyLinkedListNode from './DoublyLinkedListNode';
 
-//TODO: Add documentation
-//TODO: Add support for comparision by a custom function
-//TODO: Add find, reverse
+// TODO: Add documentation
+// TODO: Add support for comparision by a custom function
+// TODO: Add find, reverse
 
 /**
  * @class DoublyLinkedList
@@ -47,7 +47,7 @@ export default class DoublyLinkedList {
 
   deleteFirst(): any {
     if (this.isEmpty()) return null;
-    let tempNode: DoublyLinkedListNode | null = this._head;
+    const tempNode: DoublyLinkedListNode | null = this._head;
 
     this._head = this._head!.next;
     if (this._head) this._head.prev = null;
@@ -58,7 +58,7 @@ export default class DoublyLinkedList {
 
   deleteLast(): any {
     if (this.isEmpty()) return null;
-    let tempNode: DoublyLinkedListNode | null = this._tail;
+    const tempNode: DoublyLinkedListNode | null = this._tail;
 
     this._tail = this._tail!.prev;
     if (this._tail) this._tail.next = null;
@@ -70,12 +70,12 @@ export default class DoublyLinkedList {
   deleteFirstOccurence(value: any) {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return;
-    let prev: DoublyLinkedListNode | null = null,
-      curr: DoublyLinkedListNode | null = this._head,
-      removedNodeValue: any = null;
+    let prev: DoublyLinkedListNode | null = null;
+    let curr: DoublyLinkedListNode | null = this._head;
+    let removedNodeValue: any = null;
 
     while (curr) {
-      if (curr.value == value) {
+      if (curr.value === value) {
         if (curr === this._head) {
           removedNodeValue = this.deleteFirst();
         } else {
@@ -97,12 +97,12 @@ export default class DoublyLinkedList {
   deleteAllOccurences(value: number) {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return;
-    let prev: DoublyLinkedListNode | null = null,
-      curr: DoublyLinkedListNode | null = this._head,
-      deletedCount: number = 0;
+    let prev: DoublyLinkedListNode | null = null;
+    let curr: DoublyLinkedListNode | null = this._head;
+    let deletedCount: number = 0;
 
     while (curr) {
-      if (curr.value == value) {
+      if (curr.value === value) {
         if (curr === this._head) this.deleteFirst();
         else {
           prev!.next = curr.next;
@@ -121,8 +121,8 @@ export default class DoublyLinkedList {
     return this._head === null;
   }
 
-  toArray(): Array<any> {
-    let returnValue: Array<any> = [];
+  toArray(): any[] {
+    const returnValue: any[] = [];
     if (this.isEmpty()) return returnValue;
     let curr: DoublyLinkedListNode | null = this._head;
 
@@ -158,12 +158,12 @@ export default class DoublyLinkedList {
   }
 
   filter(callback: (value: any) => boolean): DoublyLinkedList | null {
-    //TODO: Isolate the loop into a foreach function
+    // TODO: Isolate the loop into a foreach function
     // if (typeof callback !== 'function')
     //   throw new Error('callback must be a function');
     if (this.isEmpty()) return null;
 
-    let returnValue: DoublyLinkedList = new DoublyLinkedList();
+    const returnValue: DoublyLinkedList = new DoublyLinkedList();
     let curr: DoublyLinkedListNode | null = this._head;
     while (curr) {
       if (callback(curr.value)) returnValue.append(curr.value);

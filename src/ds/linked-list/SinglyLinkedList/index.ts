@@ -1,2 +1,2 @@
-export * from './SinglyLinkedList';
-// export default { SinglyLinkedList };
+import SinglyLinkedList from './SinglyLinkedList';
+export default SinglyLinkedList;

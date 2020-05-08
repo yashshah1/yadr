@@ -5,9 +5,9 @@
 
 import SinglyLinkedListNode from './SinglyLinkedListNode';
 
-//TODO: Add documentation
-//TODO: Add support for comparision by a custom function
-//TODO: Add find, reverse
+// TODO: Add documentation
+// TODO: Add support for comparision by a custom function
+// TODO: Add find, reverse
 
 /**
  * @class SinglyLinkedList
@@ -19,7 +19,7 @@ export default class SinglyLinkedList {
     private _tail: SinglyLinkedListNode | null = null,
   ) {}
 
-  static fromArray(elements: Array<any>): SinglyLinkedList {
+  static fromArray(elements: any[]): SinglyLinkedList {
     const list: SinglyLinkedList = new SinglyLinkedList();
     elements.forEach((element) => list.append(element));
     return list;
@@ -49,12 +49,12 @@ export default class SinglyLinkedList {
   deleteFirstOccurence(value: any): any {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return;
-    let prev: SinglyLinkedListNode | null = null,
-      curr: SinglyLinkedListNode | null = this._head,
-      removedNodeValue: any = null;
+    let prev: SinglyLinkedListNode | null = null;
+    let curr: SinglyLinkedListNode | null = this._head;
+    let removedNodeValue: any = null;
 
     while (curr) {
-      if (curr.value == value) {
+      if (curr.value === value) {
         if (curr === this._head) removedNodeValue = this.deleteFirst();
         else {
           removedNodeValue = curr.value;
@@ -73,12 +73,12 @@ export default class SinglyLinkedList {
   deleteAllOccurences(value: number) {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return 0;
-    let prev: SinglyLinkedListNode | null = null,
-      curr: SinglyLinkedListNode | null = this._head,
-      deletedCount: number = 0;
+    let prev: SinglyLinkedListNode | null = null;
+    let curr: SinglyLinkedListNode | null = this._head;
+    let deletedCount: number = 0;
 
     while (curr) {
-      if (curr.value == value) {
+      if (curr.value === value) {
         if (curr === this._head) this.deleteFirst();
         else {
           prev!.next = curr.next;
@@ -93,7 +93,7 @@ export default class SinglyLinkedList {
 
   deleteFirst(): any | null {
     if (this.isEmpty()) return null;
-    let tempNode = this._head;
+    const tempNode = this._head;
 
     if (tempNode!.next === null) this._tail = null;
     else this._head = tempNode!.next;
@@ -104,8 +104,8 @@ export default class SinglyLinkedList {
   deleteLast(): any | null {
     if (this.isEmpty()) return null;
 
-    let prev: SinglyLinkedListNode | null = null,
-      curr: SinglyLinkedListNode | null = this._head;
+    let prev: SinglyLinkedListNode | null = null;
+    let curr: SinglyLinkedListNode | null = this._head;
     if (curr!.next === null) return this.deleteFirst();
 
     while (curr!.next) {
@@ -121,8 +121,8 @@ export default class SinglyLinkedList {
     return this._head === null;
   }
 
-  toArray(): Array<any> {
-    let returnValue: Array<any> = [];
+  toArray(): any[] {
+    const returnValue: any[] = [];
     if (this.isEmpty()) return returnValue;
     let curr: SinglyLinkedListNode | null = this._head;
 
@@ -133,12 +133,12 @@ export default class SinglyLinkedList {
     return returnValue;
   }
 
-  get head(): SinglyLinkedListNode | null {
+  get head(): any | null {
     if (this._head) return this._head.value;
     else return null;
   }
 
-  get tail(): any {
+  get tail(): any | null {
     if (this._tail) return this._tail.value;
     else return null;
   }
@@ -160,11 +160,11 @@ export default class SinglyLinkedList {
   }
 
   filter(callback: (value: any) => boolean): SinglyLinkedList | null {
-    //TODO: Isolate the loop into a foreach function
+    // TODO: Isolate the loop into a foreach function
     // if (typeof callback !== 'function') throw new Error('callback must be a function');
     if (this.isEmpty()) return null;
 
-    let returnValue: SinglyLinkedList = new SinglyLinkedList();
+    const returnValue: SinglyLinkedList = new SinglyLinkedList();
     let curr: SinglyLinkedListNode | null = this._head;
     while (curr) {
       if (callback(curr.value)) returnValue.append(curr.value);

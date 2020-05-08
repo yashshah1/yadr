@@ -2,12 +2,16 @@
   "name": "js-ds-algos",
   "version": "1.0.0",
   "description": "A collection of datastructures and algorithms written in JS",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json"
   },
+  "files": [
+    "lib/**/*"
+  ],
   "author": "Yash Shah",
   "license": "MIT",
   "devDependencies": {
