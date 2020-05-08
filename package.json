@@ -1,7 +1,12 @@
 {
-  "name": "js-ds-algos",
+  "name": "datastructures-ts",
   "version": "1.0.0",
-  "description": "A collection of datastructures and algorithms written in JS",
+  "description": "A collection of datastructures and algorithms written in TS",
+  "keywords": [
+    "datastructures",
+    "typescript"
+  ],
+  "homepage": "https://github.com/yashshah1/datastructures-ts",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -12,7 +17,15 @@
   "files": [
     "lib/**/*"
   ],
-  "author": "Yash Shah",
+  "author": "Yash Shah <yashah1234@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yashshah1/datastructures-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yashshah1/datastructures-ts/issues",
+    "email": "yashah1234@gmail.com"
+  },
   "license": "MIT",
   "devDependencies": {
     "prettier": "^2.0.5",
