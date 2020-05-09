@@ -19,10 +19,6 @@ export default class BinarySearchTree {
     const nodeToBeInserted = new BinarySearchTreeNode(value);
     if (!this.root) {
       this._root = nodeToBeInserted;
-    } else if (value < this.root.value && this.root.left === null) {
-      this.root.left = nodeToBeInserted;
-    } else if (value > this.root.value && this.root.right === null) {
-      this.root.right = nodeToBeInserted;
     } else {
       let tempNode: BinarySearchTreeNode | null = this.root;
       while (true) {
@@ -38,10 +34,7 @@ export default class BinarySearchTree {
             tempNode!.right = nodeToBeInserted;
             break;
           }
-        } else {
-          tempNode!.value = value;
-          break;
-        }
+        } else break;
       }
     }
   }
@@ -64,7 +57,7 @@ export default class BinarySearchTree {
     if (this.isEmpty()) return null;
     let tempNode: BinarySearchTreeNode | null = this.root;
     let isLeftChild: boolean = false;
-    while (tempNode && tempNode.value != value) {
+    while (tempNode && tempNode.value !== value) {
       if (value < tempNode.value) {
         tempNode = tempNode.left;
         isLeftChild = true;
@@ -105,5 +98,11 @@ export default class BinarySearchTree {
       tempNode.value = replacementValue;
     }
     return tempNode.value;
+  }
+
+  static fromArray(values: any[]): BinarySearchTree {
+    const tree = new BinarySearchTree();
+    values.forEach((element) => tree.insert(element));
+    return tree;
   }
 }
