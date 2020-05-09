@@ -75,4 +75,14 @@ export default class LinkedListQueue {
   reset(): void {
     this._q.reset();
   }
+
+  /**
+   * Returns the elements in the queue, without
+   * modifying the queue.
+   * First element of the list will be the oldest
+   * element in the queue.
+   */
+  toArray(): any[] {
+    return this._q.toArray();
+  }
 }
