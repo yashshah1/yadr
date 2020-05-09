@@ -11,16 +11,17 @@ export default class ArrayStack {
   /**
    * Initialise the class
    * @constructor
-   * @param arr A list of elements to initialise the Queue
    */
   private _offset: number;
-  constructor(private _s: any[] = []) {
+  private _s: any[];
+  constructor() {
     this._offset = 0; // To speed up pop
+    this._s = [];
   }
 
   /**
    * Pushes an element
-   * @param {*} e Element to be enqueued
+   * @param {*} e Element to be pushed
    * @return {undefined}
    */
   push(e: any): void {
@@ -32,7 +33,7 @@ export default class ArrayStack {
    * @return {*}
    */
   pop(): any {
-    if(this.isEmpty()) return null;
+    if (this.isEmpty()) return null;
 
     const returnValue: any = this.top();
     this._offset--;
@@ -47,10 +48,10 @@ export default class ArrayStack {
   }
 
   top(): any {
-    if(this.isEmpty()) return null;
-    return this._s[this._offset - 1]
+    if (this.isEmpty()) return null;
+    return this._s[this._offset - 1];
   }
-  
+
   /**
    * Returns the number of elements
    * @return {number}
@@ -60,7 +61,7 @@ export default class ArrayStack {
   }
 
   /**
-   * Returns true if queue is empty
+   * Returns true if stack is empty
    * @return {Boolean}
    */
   isEmpty(): boolean {
@@ -68,11 +69,24 @@ export default class ArrayStack {
   }
 
   /**
-   * Re initialises the queue
+   * Re initialises the stack
    * @return {undefined}
    */
   reset(): void {
     this._s = [];
     this._offset = 0;
+  }
+
+  /**
+   * Returns the elements in the stack, without
+   * modifying the stack.
+   * First element of the list will be the oldest
+   * element in the stack.
+   */
+  toArray(): any[] {
+    let returnValue: any[] = [];
+    if (!this.isEmpty())
+      for (let i = 0; i < this._offset; i++) returnValue.push(this._s[i]);
+    return returnValue;
   }
 }
