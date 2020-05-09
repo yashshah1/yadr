@@ -14,8 +14,10 @@ export default class ArrayQueue {
    * @param arr A list of elements to initialise the Queue
    */
   private _offset: number;
-  constructor(private _q: any[] = []) {
+  private _q: any[];
+  constructor() {
     this._offset = 0; // To speed up dequeue
+    this._q = [];
   }
 
   /**
@@ -44,8 +46,8 @@ export default class ArrayQueue {
      * This should be easier to solve in the linked list version
      *
      */
-    if(this.isEmpty()) return null;
-    
+    if (this.isEmpty()) return null;
+
     const returnValue: any = this.front();
     this._offset += 1;
 
@@ -98,5 +100,19 @@ export default class ArrayQueue {
   reset(): void {
     this._q = [];
     this._offset = 0;
+  }
+
+  /**
+   * Returns the elements in the queue, without
+   * modifying the queue.
+   * First element of the list will be the oldest
+   * element in the queue.
+   */
+  toArray(): any[] {
+    let returnValue: any[] = [];
+    if (!this.isEmpty())
+      for (let i = this._offset; i < this._q.length; i++)
+        returnValue.push(this._q[i]);
+    return returnValue;
   }
 }
