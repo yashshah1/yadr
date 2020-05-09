@@ -31,7 +31,7 @@ export default class ArrayQueue {
    * Dequeues an element
    * @return {*}
    */
-  dequeue(): any {
+  dequeue(): any | null {
     /*
      * There is a novice implementation
      * Where all we can do is `return this._q.pop()`
@@ -44,6 +44,8 @@ export default class ArrayQueue {
      * This should be easier to solve in the linked list version
      *
      */
+    if(this.isEmpty()) return null;
+    
     const returnValue: any = this.front();
     this._offset += 1;
 
