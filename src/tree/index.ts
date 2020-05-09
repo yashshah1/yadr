@@ -1,4 +1,5 @@
 import BinarySearchTree from './binary-search-tree';
+import AVLTree from './avl-tree';
 
-export { BinarySearchTree };
-export default { BinarySearchTree };
+export { AVLTree, BinarySearchTree };
+export default { AVLTree, BinarySearchTree };
