@@ -123,12 +123,13 @@ export default class SinglyLinkedList {
 
   toArray(): any[] {
     const returnValue: any[] = [];
-    if (this.isEmpty()) return returnValue;
-    let curr: SinglyLinkedListNode | null = this._head;
+    if (!this.isEmpty()) {
+      let curr: SinglyLinkedListNode | null = this._head;
 
-    while (curr) {
-      returnValue.push(curr.value);
-      curr = curr.next;
+      while (curr) {
+        returnValue.push(curr.value);
+        curr = curr.next;
+      }
     }
     return returnValue;
   }
