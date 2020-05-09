@@ -1,4 +1,5 @@
-import ds from './ds';
-
-export { ds };
-export default { ds };
+import LinkedList from './linked-list';
+import Queue from './queue';
+import Stack from './stack';
+export { LinkedList, Queue, Stack };
+export default { LinkedList, Queue, Stack };
