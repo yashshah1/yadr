@@ -109,7 +109,7 @@ export default class ArrayQueue {
    * element in the queue.
    */
   toArray(): any[] {
-    let returnValue: any[] = [];
+    const returnValue: any[] = [];
     if (!this.isEmpty())
       for (let i = this._offset; i < this._q.length; i++)
         returnValue.push(this._q[i]);

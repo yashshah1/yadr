@@ -84,7 +84,7 @@ export default class ArrayStack {
    * element in the stack.
    */
   toArray(): any[] {
-    let returnValue: any[] = [];
+    const returnValue: any[] = [];
     if (!this.isEmpty())
       for (let i = 0; i < this._offset; i++) returnValue.push(this._s[i]);
     return returnValue;
