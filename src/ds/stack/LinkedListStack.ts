@@ -50,7 +50,6 @@ export default class LinkedListStack {
     return this._s.tail;
   }
 
-
   /**
    * Returns true if queue is empty
    * @return {Boolean}
@@ -65,5 +64,15 @@ export default class LinkedListStack {
    */
   reset(): void {
     this._s.reset();
+  }
+
+  /**
+   * Returns the elements in the stack, without
+   * modifying the stack.
+   * First element of the list will be the oldest
+   * element in the stack.
+   */
+  toArray(): any[] {
+    return this._s.toArray();
   }
 }
