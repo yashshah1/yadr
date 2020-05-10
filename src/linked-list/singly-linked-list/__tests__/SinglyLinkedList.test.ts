@@ -95,6 +95,17 @@ describe('Singly Linked List', () => {
       expect(testList.tail).toBeNull();
     });
 
+    it('delete last element', () => {
+      const testList = SinglyLinkedList.fromArray([1, 1, 3, 4, 5, 6]);
+      expect(testList.tail).toEqual(6);
+      expect(testList.deleteFirstOccurence(6)).toBeTruthy();
+      expect(testList.deleteFirstOccurence(5)).toBeTruthy();
+      expect(testList.deleteFirstOccurence(5)).toBeFalsy();
+      expect(testList.deleteFirstOccurence(6)).toBeFalsy();
+      expect(testList.head).toEqual(1);
+      expect(testList.tail).toEqual(4);
+    });
+
     it('from list with n elements', () => {
       const testList = SinglyLinkedList.fromArray([1, 1, 3, 4, 5, 6]);
       expect(testList.tail).toEqual(6);
@@ -135,11 +146,54 @@ describe('Singly Linked List', () => {
     });
   });
 
-  // it('Should be able to prepend', () => {
-  //   const testList = SinglyLinkedList.fromArray([1, 1, 1, 4, 5, 6]);
-  //   expect(testList.length).toEqual(6);
-  //   testList.prepend(9);
-  //   expect(testList.head).toEqual(9);
-  //   expect(testList.length).toEqual(7);
-  // });
+  it('Should be able to prepend', () => {
+    const testList = SinglyLinkedList.fromArray([1, 1, 1, 4, 5, 6]);
+    expect(testList.length).toEqual(6);
+    testList.prepend(9);
+    expect(testList.head).toEqual(9);
+    expect(testList.length).toEqual(7);
+  });
+
+  describe('Should be able to exort to Array', () => {
+    it('Empty Linked List', () => {
+      const testList = new SinglyLinkedList();
+      expect(testList.toArray()).toEqual([]);
+    });
+
+    it('Linked List with n elements', () => {
+      const testList = SinglyLinkedList.fromArray([1, 2, 3, 4]);
+      expect(testList.toArray()).toEqual([1, 2, 3, 4]);
+    });
+  });
+
+  it('Should reset', () => {
+    const testList = SinglyLinkedList.fromArray([1, 2, 3, 4]);
+    testList.reset();
+    expect(testList.head).toBeNull();
+    expect(testList.tail).toBeNull();
+    expect(testList.length).toEqual(0);
+  });
+
+  describe('Should work with filter', () => {
+    it('Empty Linked List', () => {
+      const testList = new SinglyLinkedList();
+      expect(testList.filter(() => true)).toBeNull();
+    });
+
+    it('Linked List with real condition', () => {
+      const testList = SinglyLinkedList.fromArray([1, 2, 3, 4]);
+      const newTestList = testList.filter((e) => e > 2);
+      expect(newTestList!.head).toEqual(3);
+      expect(newTestList!.tail).toEqual(4);
+      expect(newTestList!.length).toEqual(2);
+    });
+
+    it('Linked List with fake condition', () => {
+      const testList = SinglyLinkedList.fromArray([1, 2, 3, 4]);
+      const newTestList = testList.filter((e) => e > 5);
+      expect(newTestList!.head).toBeNull();
+      expect(newTestList!.tail).toBeNull();
+      expect(newTestList!.length).toEqual(0);
+    });
+  });
 });
