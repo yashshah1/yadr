@@ -1,4 +1,5 @@
 node_modules
 lib
 scripts
+coverage
 *.min.ts
