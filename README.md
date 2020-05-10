@@ -1,4 +1,4 @@
-<img width=200 src="https://raw.githubusercontent.com/yashshah1/datastructures-ts/master/assets/logo.svg">
+<img width=200 src="https://raw.githubusercontent.com/yashshah1/yard-ts/master/assets/logo.svg">
 
 # yard-ts - Yet Another Repository of Datastructures - Ts
 
