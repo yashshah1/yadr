@@ -104,9 +104,9 @@ export default class DoublyLinkedList {
     return deletedFlag;
   }
 
-  deleteAllOccurences(value: number) {
+  deleteAllOccurences(value: number): number {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
-    if (this.isEmpty()) return;
+    if (this.isEmpty()) return 0;
     let prev: DoublyLinkedListNode | null = null;
     let curr: DoublyLinkedListNode | null = this._head;
     let deletedCount: number = 0;
@@ -144,12 +144,14 @@ export default class DoublyLinkedList {
     return returnValue;
   }
 
-  get head(): DoublyLinkedListNode | any {
-    return this._head;
+  get head(): any | null {
+    if (this._head) return this._head.value;
+    else return null;
   }
 
-  get tail(): DoublyLinkedListNode | any {
-    return this._tail;
+  get tail(): any | null {
+    if (this._tail) return this._tail.value;
+    else return null;
   }
 
   get length(): number {
