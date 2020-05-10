@@ -14,12 +14,10 @@ import DoublyLinkedListNode from './DoublyLinkedListNode';
  * Implementation of the Doubly Linked List
  */
 export default class DoublyLinkedList {
-
   private _count: number;
   private _head: DoublyLinkedListNode | null;
-    private _tail: DoublyLinkedListNode | null;
-  constructor(
-  ) {
+  private _tail: DoublyLinkedListNode | null;
+  constructor() {
     this._head = null;
     this._tail = null;
     this._count = 0;
@@ -53,7 +51,7 @@ export default class DoublyLinkedList {
 
     if (this.isEmpty()) this._head = nodeToBeAdded;
     else this._tail!.next = nodeToBeAdded;
-    this._count++
+    this._count++;
     this._tail = nodeToBeAdded;
   }
 
@@ -79,33 +77,31 @@ export default class DoublyLinkedList {
     return tempNode!.value;
   }
 
-  deleteFirstOccurence(value: any) {
+  deleteFirstOccurence(value: any): boolean {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
-    if (this.isEmpty()) return;
+    if (this.isEmpty()) return false;
     let prev: DoublyLinkedListNode | null = null;
     let curr: DoublyLinkedListNode | null = this._head;
-    let removedNodeValue: any = null;
-
+    let deletedFlag = false;
     while (curr) {
       if (curr.value === value) {
         if (curr === this._head) {
-          removedNodeValue = this.deleteFirst();
+          this.deleteFirst();
         } else {
-          removedNodeValue = curr.value;
           prev!.next = curr.next;
-
           // Removed element is the last
           if (curr.next === null) this._tail = prev;
           else curr.next.prev = prev;
 
           this._count--;
         }
+        deletedFlag = true;
         break;
       }
       prev = curr;
       curr = curr.next;
     }
-    return removedNodeValue;
+    return deletedFlag;
   }
 
   deleteAllOccurences(value: number) {
@@ -137,7 +133,7 @@ export default class DoublyLinkedList {
   }
 
   toArray(): any[] {
-    const returnValue: any[] = [];``
+    const returnValue: any[] = [];
     if (this.isEmpty()) return returnValue;
     let curr: DoublyLinkedListNode | null = this._head;
 

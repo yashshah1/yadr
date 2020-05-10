@@ -16,9 +16,8 @@ import SinglyLinkedListNode from './SinglyLinkedListNode';
 export default class SinglyLinkedList {
   private _count: number;
   private _head: SinglyLinkedListNode | null;
-    private _tail: SinglyLinkedListNode | null;
-  constructor(
-  ) {
+  private _tail: SinglyLinkedListNode | null;
+  constructor() {
     this._head = null;
     this._tail = null;
     this._count = 0;
@@ -37,7 +36,7 @@ export default class SinglyLinkedList {
     );
     this._head = nodeToBeAdded;
     this._tail = this._tail || nodeToBeAdded;
-    this._count++
+    this._count++;
   }
 
   append(value: any): void {
@@ -46,36 +45,37 @@ export default class SinglyLinkedList {
     if (!this._head) {
       this._head = nodeToBeAdded;
       this._tail = nodeToBeAdded;
-      return;
+    } else {
+      this._tail!.next = nodeToBeAdded;
+      this._tail = nodeToBeAdded;
     }
-    this._tail!.next = nodeToBeAdded;
-    this._tail = nodeToBeAdded;
     this._count++;
+    return;
   }
 
-  deleteFirstOccurence(value: any): any {
+  deleteFirstOccurence(value: any): boolean {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
-    if (this.isEmpty()) return;
+    if (this.isEmpty()) return false;
     let prev: SinglyLinkedListNode | null = null;
     let curr: SinglyLinkedListNode | null = this._head;
-    let removedNodeValue: any = null;
+    let deletedFlag = false;
 
     while (curr) {
       if (curr.value === value) {
-        if (curr === this._head) removedNodeValue = this.deleteFirst();
+        if (curr === this._head) this.deleteFirst();
         else {
-          removedNodeValue = curr.value;
           prev!.next = curr.next;
           if (curr.next === null) this._tail = prev; // Removed element is the last
           this._count--;
         }
+        deletedFlag = true;
         break;
       }
       prev = curr;
       curr = curr.next;
     }
-    
-    return removedNodeValue;
+
+    return deletedFlag;
   }
 
   deleteAllOccurences(value: number) {
@@ -103,12 +103,11 @@ export default class SinglyLinkedList {
   deleteFirst(): any | null {
     if (this.isEmpty()) return null;
     const tempNode = this._head;
+    this._head = tempNode!.next;
 
-    if (tempNode!.next === null) this._tail = null;
-    else this._head = tempNode!.next;
+    if (this._head === null) this._tail = null;
     this._count--;
     return tempNode!.value;
-    
   }
 
   deleteLast(): any | null {
@@ -116,7 +115,7 @@ export default class SinglyLinkedList {
 
     let prev: SinglyLinkedListNode | null = null;
     let curr: SinglyLinkedListNode | null = this._head;
-    if (curr!.next === null) return this.deleteFirst();
+    if (this._count === 1) return this.deleteFirst();
 
     while (curr!.next) {
       prev = curr;
@@ -124,6 +123,7 @@ export default class SinglyLinkedList {
     }
 
     prev!.next = null;
+    this._tail = prev;
     this._count--;
     return curr!.value;
   }
