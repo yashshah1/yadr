@@ -1,9 +1,12 @@
-<img width=200 src="https://raw.githubusercontent.com/yashshah1/datastructures-ts/master/assets/logo.png">
+<img width=200 src="https://raw.githubusercontent.com/yashshah1/datastructures-ts/master/assets/logo.svg">
+
+# YADR - Yet another Datastructure Repository
 
 Targets to be a hlighly powerful, low dependency set of datastructures written in TypeScript
 
 # Table Of Contents
 
+- [YADR - Yet another Datastructure Repository](#yadr---yet-another-datastructure-repository)
 - [Table Of Contents](#table-of-contents)
 - [Install](#install)
 - [Status](#status)

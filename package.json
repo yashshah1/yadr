@@ -1,12 +1,12 @@
 {
-  "name": "datastructures-ts",
+  "name": "yadr",
   "version": "1.0.0",
-  "description": "A collection of datastructures and algorithms written in TS",
+  "description": "Yet another collection of datastructures, but in TS",
   "keywords": [
     "datastructures",
     "typescript"
   ],
-  "homepage": "https://github.com/yashshah1/datastructures-ts",
+  "homepage": "https://github.com/yashshah1/yadr",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -14,7 +14,9 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest",
-    "precommit": "npm run format && npm run lint && npm run test -- --coverage"
+    "precommit": "npm run format && npm run lint && npm run test -- --coverage",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run format && npm run lint && npm run test -- --coverage"
   },
   "files": [
     "lib/**/*"
@@ -22,10 +24,10 @@
   "author": "Yash Shah <yashah1234@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yashshah1/datastructures-ts.git"
+    "url": "https://github.com/yashshah1/yadr.git"
   },
   "bugs": {
-    "url": "https://github.com/yashshah1/datastructures-ts/issues",
+    "url": "https://github.com/yashshah1/yadr/issues",
     "email": "yashah1234@gmail.com"
   },
   "license": "MIT",
