@@ -10,6 +10,9 @@ Targets to be a hlighly powerful, low dependency set of datastructures written i
 - [yard-ts - Yet Another Repository of Datastructures - Ts](#yard-ts---yet-another-repository-of-datastructures---ts)
 - [Table Of Contents](#table-of-contents)
 - [Install](#install)
+- [Usage](#usage)
+  - [CommonJS](#commonjs)
+  - [ES](#es)
 - [Status](#status)
 - [Contributing](#contributing)
   - [Naming Convention](#naming-convention)
@@ -17,7 +20,23 @@ Targets to be a hlighly powerful, low dependency set of datastructures written i
 
 # Install
 
-Currently isn't published to npmjsm, but is in works.
+```sh
+npm i yard-ts
+```
+
+# Usage
+
+## CommonJS
+
+```js
+const ds = require('yard-ts').default;
+```
+
+## ES
+
+```js
+import ds from 'yard-ts';
+```
 
 # Status
 
