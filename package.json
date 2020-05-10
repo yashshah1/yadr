@@ -1,12 +1,12 @@
 {
-  "name": "yadr",
+  "name": "yard-ts",
   "version": "1.0.0",
   "description": "Yet another collection of datastructures, but in TS",
   "keywords": [
     "datastructures",
     "typescript"
   ],
-  "homepage": "https://github.com/yashshah1/yadr",
+  "homepage": "https://github.com/yashshah1/yard-ts",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -24,10 +24,10 @@
   "author": "Yash Shah <yashah1234@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yashshah1/yadr.git"
+    "url": "https://github.com/yashshah1/yard-ts.git"
   },
   "bugs": {
-    "url": "https://github.com/yashshah1/yadr/issues",
+    "url": "https://github.com/yashshah1/yard-ts/issues",
     "email": "yashah1234@gmail.com"
   },
   "license": "MIT",
