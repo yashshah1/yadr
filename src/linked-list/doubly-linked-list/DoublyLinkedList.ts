@@ -14,10 +14,16 @@ import DoublyLinkedListNode from './DoublyLinkedListNode';
  * Implementation of the Doubly Linked List
  */
 export default class DoublyLinkedList {
+
+  private _count: number;
+  private _head: DoublyLinkedListNode | null;
+    private _tail: DoublyLinkedListNode | null;
   constructor(
-    private _head: DoublyLinkedListNode | null = null,
-    private _tail: DoublyLinkedListNode | null = null,
-  ) {}
+  ) {
+    this._head = null;
+    this._tail = null;
+    this._count = 0;
+  }
 
   static fromArray(elements: any[]): DoublyLinkedList {
     const list: DoublyLinkedList = new DoublyLinkedList();
@@ -34,7 +40,7 @@ export default class DoublyLinkedList {
 
     if (this.isEmpty()) this._tail = nodeToBeAdded;
     else this._head!.prev = nodeToBeAdded;
-
+    this._count++;
     this._head = nodeToBeAdded;
   }
 
@@ -47,7 +53,7 @@ export default class DoublyLinkedList {
 
     if (this.isEmpty()) this._head = nodeToBeAdded;
     else this._tail!.next = nodeToBeAdded;
-
+    this._count++
     this._tail = nodeToBeAdded;
   }
 
@@ -58,7 +64,7 @@ export default class DoublyLinkedList {
     this._head = this._head!.next;
     if (this._head) this._head.prev = null;
     else this._tail = null;
-
+    this._count--;
     return tempNode!.value;
   }
 
@@ -69,7 +75,7 @@ export default class DoublyLinkedList {
     this._tail = this._tail!.prev;
     if (this._tail) this._tail.next = null;
     else this._head = null;
-
+    this._count--;
     return tempNode!.value;
   }
 
@@ -91,6 +97,8 @@ export default class DoublyLinkedList {
           // Removed element is the last
           if (curr.next === null) this._tail = prev;
           else curr.next.prev = prev;
+
+          this._count--;
         }
         break;
       }
@@ -115,6 +123,7 @@ export default class DoublyLinkedList {
           // Removed element is the last
           if (curr.next === null) this._tail = prev;
           else curr.next.prev = prev;
+          this._count--;
         }
         deletedCount++;
       } else prev = curr;
@@ -124,11 +133,11 @@ export default class DoublyLinkedList {
   }
 
   isEmpty(): boolean {
-    return this._head === null;
+    return this._count === 0;
   }
 
   toArray(): any[] {
-    const returnValue: any[] = [];
+    const returnValue: any[] = [];``
     if (this.isEmpty()) return returnValue;
     let curr: DoublyLinkedListNode | null = this._head;
 
@@ -148,19 +157,13 @@ export default class DoublyLinkedList {
   }
 
   get length(): number {
-    let c: number = 0;
-    if (this.isEmpty()) return c;
-    let curr: DoublyLinkedListNode | null = this._head;
-    while (curr) {
-      c++;
-      curr = curr.next;
-    }
-    return c;
+    return this._count;
   }
 
   reset(): void {
     this._head = null;
     this._tail = null;
+    this._count = 0;
   }
 
   filter(callback: (value: any) => boolean): DoublyLinkedList | null {

@@ -14,10 +14,15 @@ import SinglyLinkedListNode from './SinglyLinkedListNode';
  * Implementation of the Singly Linked List
  */
 export default class SinglyLinkedList {
+  private _count: number;
+  private _head: SinglyLinkedListNode | null;
+    private _tail: SinglyLinkedListNode | null;
   constructor(
-    private _head: SinglyLinkedListNode | null = null,
-    private _tail: SinglyLinkedListNode | null = null,
-  ) {}
+  ) {
+    this._head = null;
+    this._tail = null;
+    this._count = 0;
+  }
 
   static fromArray(elements: any[]): SinglyLinkedList {
     const list: SinglyLinkedList = new SinglyLinkedList();
@@ -32,6 +37,7 @@ export default class SinglyLinkedList {
     );
     this._head = nodeToBeAdded;
     this._tail = this._tail || nodeToBeAdded;
+    this._count++
   }
 
   append(value: any): void {
@@ -44,6 +50,7 @@ export default class SinglyLinkedList {
     }
     this._tail!.next = nodeToBeAdded;
     this._tail = nodeToBeAdded;
+    this._count++;
   }
 
   deleteFirstOccurence(value: any): any {
@@ -59,14 +66,15 @@ export default class SinglyLinkedList {
         else {
           removedNodeValue = curr.value;
           prev!.next = curr.next;
-
           if (curr.next === null) this._tail = prev; // Removed element is the last
+          this._count--;
         }
         break;
       }
       prev = curr;
       curr = curr.next;
     }
+    
     return removedNodeValue;
   }
 
@@ -83,6 +91,7 @@ export default class SinglyLinkedList {
         else {
           prev!.next = curr.next;
           if (curr.next === null) this._tail = prev; // Removed element is the last
+          this._count--;
         }
         deletedCount++;
       } else prev = curr;
@@ -97,8 +106,9 @@ export default class SinglyLinkedList {
 
     if (tempNode!.next === null) this._tail = null;
     else this._head = tempNode!.next;
-
+    this._count--;
     return tempNode!.value;
+    
   }
 
   deleteLast(): any | null {
@@ -114,11 +124,12 @@ export default class SinglyLinkedList {
     }
 
     prev!.next = null;
+    this._count--;
     return curr!.value;
   }
 
   isEmpty(): boolean {
-    return this._head === null;
+    return this._count === 0;
   }
 
   toArray(): any[] {
@@ -145,19 +156,12 @@ export default class SinglyLinkedList {
   }
 
   get length(): number {
-    let c: number = 0;
-    if (this.isEmpty()) return c;
-    let curr: SinglyLinkedListNode | null = this._head;
-    while (curr) {
-      c++;
-      curr = curr.next;
-    }
-    return c;
+    return this._count;
   }
-
   reset(): void {
     this._head = null;
     this._tail = null;
+    this._count = 0;
   }
 
   filter(callback: (value: any) => boolean): SinglyLinkedList | null {
