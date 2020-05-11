@@ -74,6 +74,7 @@ export default class ArrayQueue {
    * @return {*}
    */
   front(): any {
+    if (this.isEmpty()) return null;
     return this._q[this._offset];
   }
 
@@ -82,6 +83,7 @@ export default class ArrayQueue {
    * @return {*}
    */
   back(): any {
+    if (this.isEmpty()) return null;
     return this._q[this._q.length - 1];
   }
 
