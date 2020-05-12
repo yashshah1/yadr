@@ -28,8 +28,9 @@ npm i yard-ts
 
 ## CommonJS
 
-```js
-const ds = require('yard-ts').default;
+```diff
+- const ds = require('yard-ts');
++ const ds = require('yard-ts').default;
 ```
 
 ## ES
