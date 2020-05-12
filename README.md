@@ -52,7 +52,7 @@ import ds from 'yard-ts';
   - Linked List Queue - done
 - Binary Trees
   - Binary Search Tree - done
-  - AVL Tree - in progress
+  - AVL Tree - done
 - Graph - in progress
 - Heap - in progress
 - Priority Queue - in progress
