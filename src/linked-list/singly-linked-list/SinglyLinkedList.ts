@@ -6,7 +6,7 @@
 import SinglyLinkedListNode from './SinglyLinkedListNode';
 
 // TODO: Add documentation
-// TODO: Add support for comparision by a custom function
+// TODO: Add support for comparision by a custom function - Done
 // TODO: Add find, reverse
 
 /**
@@ -18,6 +18,13 @@ export default class SinglyLinkedList {
   private _head: SinglyLinkedListNode | null;
   private _tail: SinglyLinkedListNode | null;
   private _compFunc: (x: any, y: any) => boolean;
+
+  /**
+   * @param compareFunction
+   * User can have its own custom compare function
+   * Has to return a boolean
+   * Or it will by default be set to "==="
+   */
 
   constructor(compareFunction?: (x: any, y: any) => boolean) {
     this._head = null;
@@ -61,6 +68,11 @@ export default class SinglyLinkedList {
     return;
   }
 
+  /**
+   * @param compFunction
+   *  The user can even choose to have a customized comparator function here
+   */
+
   deleteFirstOccurence(
     value: any,
     compFunction: (x: any, y: any) => boolean = this._compFunc,
@@ -88,6 +100,11 @@ export default class SinglyLinkedList {
 
     return deletedFlag;
   }
+
+  /**
+   * @param compFunction
+   *  The user can even choose to have a customized comparator function here
+   */
 
   deleteAllOccurences(
     value: number,

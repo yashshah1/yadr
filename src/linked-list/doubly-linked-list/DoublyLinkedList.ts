@@ -19,6 +19,13 @@ export default class DoublyLinkedList {
   private _tail: DoublyLinkedListNode | null;
   private _compFunc: (x: any, y: any) => boolean;
 
+  /**
+   * @param compareFunction
+   * User can have its own custom compare function
+   * Has to return a boolean
+   * Or it will by default be set to "==="
+   */
+
   constructor(compareFunction?: (x: any, y: any) => boolean) {
     this._head = null;
     this._tail = null;
@@ -85,6 +92,11 @@ export default class DoublyLinkedList {
     return tempNode!.value;
   }
 
+  /**
+   * @param compFunction
+   *  The user can even choose to have a customized comparator function here
+   */
+
   deleteFirstOccurence(
     value: any,
     compFunction: (x: any, y: any) => boolean = this._compFunc,
@@ -115,6 +127,10 @@ export default class DoublyLinkedList {
     return deletedFlag;
   }
 
+  /**
+   * @param compFunction
+   *  The user can even choose to have a customized comparator function here
+   */
   deleteAllOccurences(
     value: number,
     compFunction: (x: any, y: any) => boolean = this._compFunc,
