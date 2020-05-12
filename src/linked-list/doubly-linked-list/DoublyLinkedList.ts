@@ -7,7 +7,6 @@ import DoublyLinkedListNode from './DoublyLinkedListNode';
 import ComparatorClass from '../../utils/Comparator';
 
 // TODO: Add documentation
-// TODO: Add support for comparision by a custom function
 // TODO: Add find, reverse
 
 /**

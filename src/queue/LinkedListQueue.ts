@@ -3,9 +3,7 @@
  * @license MIT
  */
 
-// import LinkedList from '../linked-list';
-// // const { SinglyLinkedList } = LinkedList;
-import { SinglyLinkedList as LinkedList } from '../linked-list';
+import LinkedList from '../linked-list/singly-linked-list/';
 
 /**
  * @class LinkedListQueue

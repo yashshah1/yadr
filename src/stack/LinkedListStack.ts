@@ -4,7 +4,7 @@
  */
 
 // Doubly to reduce time complexity of Pop from O(N) to O(1)
-import { DoublyLinkedList as LinkedList } from '../linked-list';
+import LinkedList from '../linked-list/doubly-linked-list/';
 
 /**
  * @class LinkedListStack

@@ -1,4 +1,5 @@
 import LinkedList from './linked-list';
 import Queue from './queue';
 import Stack from './stack';
-export default { LinkedList, Queue, Stack };
+import Tree from './tree';
+export default { LinkedList, Queue, Stack, Tree };

@@ -7,7 +7,6 @@ import SinglyLinkedListNode from './SinglyLinkedListNode';
 import ComparatorClass from '../../utils/Comparator';
 
 // TODO: Add documentation
-// TODO: Add support for comparision by a custom function - Done
 // TODO: Add find, reverse
 
 /**

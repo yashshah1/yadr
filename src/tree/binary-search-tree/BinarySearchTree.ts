@@ -4,6 +4,8 @@
  */
 
 import BinarySearchTreeNode from './BinarySearchTreeNode';
+// import { ArrayStack as Stack } from '../../stack';
+import Stack from '../../stack/ArrayStack';
 
 export default class BinarySearchTree {
   private _root: BinarySearchTreeNode | null;
@@ -104,5 +106,23 @@ export default class BinarySearchTree {
     const tree = new BinarySearchTree();
     values.forEach((element) => tree.insert(element));
     return tree;
+  }
+
+  inOrder(): any[] {
+    if (this.isEmpty()) return [];
+    const stack = new Stack();
+    let outputArray = [];
+    let currentNode = this.root;
+    while (true) {
+      if (currentNode) {
+        stack.push(currentNode);
+        currentNode = currentNode.left;
+      } else if (!stack.isEmpty()) {
+        currentNode = stack.pop();
+        outputArray.push(currentNode!.value);
+        currentNode = currentNode!.right;
+      } else break;
+    }
+    return outputArray;
   }
 }
