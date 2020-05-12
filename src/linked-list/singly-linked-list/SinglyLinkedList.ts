@@ -17,10 +17,16 @@ export default class SinglyLinkedList {
   private _count: number;
   private _head: SinglyLinkedListNode | null;
   private _tail: SinglyLinkedListNode | null;
+  private _compFunc: (x: any, y: any) => boolean;
+
   constructor() {
     this._head = null;
     this._tail = null;
     this._count = 0;
+    this._compFunc = (x: any, y: any): boolean => {
+      if (x === y) return true;
+      return false;
+    };
   }
 
   static fromArray(elements: any[]): SinglyLinkedList {
@@ -53,7 +59,10 @@ export default class SinglyLinkedList {
     return;
   }
 
-  deleteFirstOccurence(value: any): boolean {
+  deleteFirstOccurence(
+    value: any,
+    compFunction: (x: any, y: any) => boolean = this._compFunc,
+  ): boolean {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return false;
     let prev: SinglyLinkedListNode | null = null;
@@ -61,7 +70,7 @@ export default class SinglyLinkedList {
     let deletedFlag = false;
 
     while (curr) {
-      if (curr.value === value) {
+      if (compFunction(curr.value, value)) {
         if (curr === this._head) this.deleteFirst();
         else {
           prev!.next = curr.next;
@@ -78,7 +87,10 @@ export default class SinglyLinkedList {
     return deletedFlag;
   }
 
-  deleteAllOccurences(value: number): number {
+  deleteAllOccurences(
+    value: number,
+    compFunction: (x: any, y: any) => boolean = this._compFunc,
+  ): number {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return 0;
     let prev: SinglyLinkedListNode | null = null;
@@ -86,7 +98,7 @@ export default class SinglyLinkedList {
     let deletedCount: number = 0;
 
     while (curr) {
-      if (curr.value === value) {
+      if (compFunction(curr.value, value)) {
         if (curr === this._head) this.deleteFirst();
         else {
           prev!.next = curr.next;
