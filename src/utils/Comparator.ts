@@ -2,7 +2,7 @@ export default class Comparator {
   private _compare: (x: any, y: any) => number;
   /**
    *
-   * @param compareFunction returns a +ve number if a > b, 0 if they are equal, -1 if b > a
+   * @param compareFunction returns a +ve number if a > b, 0 if they are equal, -ve number if b > a
    */
   constructor(compareFunction?: (x: any, y: any) => number) {
     this._compare = compareFunction || Comparator.defaultCompareFunction;
