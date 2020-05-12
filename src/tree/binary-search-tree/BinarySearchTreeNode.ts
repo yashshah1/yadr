@@ -52,13 +52,4 @@ export default class BinarySearchTreeNode {
   get parent(): BinarySearchTreeNode | null {
     return this._parent;
   }
-
-  static copyNode(source: BinarySearchTreeNode): BinarySearchTreeNode {
-    const node = new BinarySearchTreeNode(source.value);
-    node.left = source.left;
-    node.right = source.right;
-    node.parent = source.parent;
-
-    return node;
-  }
 }

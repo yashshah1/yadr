@@ -4,7 +4,6 @@
  */
 
 import BinarySearchTreeNode from './BinarySearchTreeNode';
-// import { ArrayStack as Stack } from '../../stack';
 import Stack from '../../stack/ArrayStack';
 
 export default class BinarySearchTree {
@@ -111,7 +110,7 @@ export default class BinarySearchTree {
   inOrder(): any[] {
     if (this.isEmpty()) return [];
     const stack = new Stack();
-    let outputArray = [];
+    const outputArray = [];
     let currentNode = this.root;
     while (true) {
       if (currentNode) {
