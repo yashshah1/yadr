@@ -19,14 +19,16 @@ export default class DoublyLinkedList {
   private _tail: DoublyLinkedListNode | null;
   private _compFunc: (x: any, y: any) => boolean;
 
-  constructor() {
+  constructor(compareFunction?: (x: any, y: any) => boolean) {
     this._head = null;
     this._tail = null;
     this._count = 0;
-    this._compFunc = (x: any, y: any): boolean => {
-      if (x === y) return true;
-      return false;
-    };
+    this._compFunc = compareFunction
+      ? compareFunction
+      : (x: any, y: any): boolean => {
+          if (x === y) return true;
+          return false;
+        };
   }
 
   static fromArray(elements: any[]): DoublyLinkedList {
