@@ -4,6 +4,7 @@
  */
 
 import SinglyLinkedListNode from './SinglyLinkedListNode';
+import ComparatorClass from '../../utils/Comparator';
 
 // TODO: Add documentation
 // TODO: Add support for comparision by a custom function - Done
@@ -17,25 +18,21 @@ export default class SinglyLinkedList {
   private _count: number;
   private _head: SinglyLinkedListNode | null;
   private _tail: SinglyLinkedListNode | null;
-  private _compFunc: (x: any, y: any) => boolean;
+  private _compare: ComparatorClass;
 
   /**
    * @param compareFunction
    * User can have its own custom compare function
-   * Has to return a boolean
-   * Or it will by default be set to "==="
+   * Has to return a number
+   * Read: http://www.cplusplus.com/reference/cstdlib/qsort/
+   * Or it will by default be set to "a - b"
    */
 
-  constructor(compareFunction?: (x: any, y: any) => boolean) {
+  constructor(compareFunction?: (x: any, y: any) => number) {
     this._head = null;
     this._tail = null;
     this._count = 0;
-    this._compFunc = compareFunction
-      ? compareFunction
-      : (x: any, y: any): boolean => {
-          if (x === y) return true;
-          return false;
-        };
+    this._compare = new ComparatorClass(compareFunction);
   }
 
   static fromArray(elements: any[]): SinglyLinkedList {
@@ -68,15 +65,7 @@ export default class SinglyLinkedList {
     return;
   }
 
-  /**
-   * @param compFunction
-   *  The user can even choose to have a customized comparator function here
-   */
-
-  deleteFirstOccurence(
-    value: any,
-    compFunction: (x: any, y: any) => boolean = this._compFunc,
-  ): boolean {
+  deleteFirstOccurence(value: any): boolean {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return false;
     let prev: SinglyLinkedListNode | null = null;
@@ -84,7 +73,7 @@ export default class SinglyLinkedList {
     let deletedFlag = false;
 
     while (curr) {
-      if (compFunction(curr.value, value)) {
+      if (this._compare.isEqual(curr.value, value)) {
         if (curr === this._head) this.deleteFirst();
         else {
           prev!.next = curr.next;
@@ -101,15 +90,7 @@ export default class SinglyLinkedList {
     return deletedFlag;
   }
 
-  /**
-   * @param compFunction
-   *  The user can even choose to have a customized comparator function here
-   */
-
-  deleteAllOccurences(
-    value: number,
-    compFunction: (x: any, y: any) => boolean = this._compFunc,
-  ): number {
+  deleteAllOccurences(value: number): number {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return 0;
     let prev: SinglyLinkedListNode | null = null;
@@ -117,7 +98,7 @@ export default class SinglyLinkedList {
     let deletedCount: number = 0;
 
     while (curr) {
-      if (compFunction(curr.value, value)) {
+      if (this._compare.isEqual(curr.value, value)) {
         if (curr === this._head) this.deleteFirst();
         else {
           prev!.next = curr.next;
