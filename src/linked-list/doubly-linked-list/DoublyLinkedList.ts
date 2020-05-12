@@ -17,10 +17,25 @@ export default class DoublyLinkedList {
   private _count: number;
   private _head: DoublyLinkedListNode | null;
   private _tail: DoublyLinkedListNode | null;
-  constructor() {
+  private _compFunc: (x: any, y: any) => boolean;
+
+  /**
+   * @param compareFunction
+   * User can have its own custom compare function
+   * Has to return a boolean
+   * Or it will by default be set to "==="
+   */
+
+  constructor(compareFunction?: (x: any, y: any) => boolean) {
     this._head = null;
     this._tail = null;
     this._count = 0;
+    this._compFunc = compareFunction
+      ? compareFunction
+      : (x: any, y: any): boolean => {
+          if (x === y) return true;
+          return false;
+        };
   }
 
   static fromArray(elements: any[]): DoublyLinkedList {
@@ -77,14 +92,22 @@ export default class DoublyLinkedList {
     return tempNode!.value;
   }
 
-  deleteFirstOccurence(value: any): boolean {
+  /**
+   * @param compFunction
+   *  The user can even choose to have a customized comparator function here
+   */
+
+  deleteFirstOccurence(
+    value: any,
+    compFunction: (x: any, y: any) => boolean = this._compFunc,
+  ): boolean {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return false;
     let prev: DoublyLinkedListNode | null = null;
     let curr: DoublyLinkedListNode | null = this._head;
     let deletedFlag = false;
     while (curr) {
-      if (curr.value === value) {
+      if (compFunction(curr.value, value)) {
         if (curr === this._head) {
           this.deleteFirst();
         } else {
@@ -104,7 +127,14 @@ export default class DoublyLinkedList {
     return deletedFlag;
   }
 
-  deleteAllOccurences(value: number): number {
+  /**
+   * @param compFunction
+   *  The user can even choose to have a customized comparator function here
+   */
+  deleteAllOccurences(
+    value: number,
+    compFunction: (x: any, y: any) => boolean = this._compFunc,
+  ): number {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return 0;
     let prev: DoublyLinkedListNode | null = null;
@@ -112,7 +142,7 @@ export default class DoublyLinkedList {
     let deletedCount: number = 0;
 
     while (curr) {
-      if (curr.value === value) {
+      if (compFunction(curr.value, value)) {
         if (curr === this._head) this.deleteFirst();
         else {
           prev!.next = curr.next;
