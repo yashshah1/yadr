@@ -16,6 +16,7 @@ Targets to be a hlighly powerful, low dependency set of datastructures written i
 - [Status](#status)
 - [Contributing](#contributing)
   - [Naming Convention](#naming-convention)
+- [Testing](#testing)
 - [License](#license)
 
 # Install
@@ -52,7 +53,7 @@ import ds from 'yard-ts';
   - Linked List Queue - done
 - Binary Trees
   - Binary Search Tree - done
-  - AVL Tree - done
+  - AVL Tree - done (tests pending)
 - Graph - in progress
 - Heap - in progress
 - Priority Queue - in progress
@@ -67,6 +68,21 @@ Feel free to fork and raise a PR with any bugfix / contribution.
 - Folders - All lowercased, hypen (`-`) seperated
 - Code Files - `PascalCased.ts`
 - Test Files - `PascalCased.test.ts` (Must reside in `__tests__`)
+
+# Testing
+```sh
+npm test
+```
+This should run all the tests, to run a specific test run
+```sh
+npm test -- -t <Keyword identifier>
+```
+
+As of writing, the test suite covers:
+- `98.27%` of statements
+- `94.44%` of branches
+- `98.25%` of functions
+- `99.34%` of lines
 
 # License
 

@@ -1,6 +1,6 @@
 {
   "name": "yard-ts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Yet another collection of datastructures, but in TS",
   "keywords": [
     "datastructures",
