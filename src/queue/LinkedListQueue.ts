@@ -14,7 +14,10 @@ export default class LinkedListQueue {
    * Initialise the class
    * @constructor
    */
-  constructor(private _q: LinkedList = new LinkedList()) {}
+  private _q: LinkedList;
+  constructor() {
+    this._q = new LinkedList();
+  }
 
   /**
    * Enqueues an element

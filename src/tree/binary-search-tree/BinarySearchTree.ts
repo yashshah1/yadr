@@ -55,8 +55,8 @@ export default class BinarySearchTree {
     return this.root === null;
   }
 
-  remove(value: any): any | null {
-    if (this.isEmpty()) return null;
+  remove(value: any): boolean {
+    if (this.isEmpty()) return false;
     let tempNode: BinarySearchTreeNode | null = this.root;
     let isLeftChild: boolean = false;
     while (tempNode && tempNode.value !== value) {
@@ -68,7 +68,7 @@ export default class BinarySearchTree {
         isLeftChild = false;
       }
     }
-    if (!tempNode) return null;
+    if (!tempNode) return false;
 
     // No children
     if (!tempNode.left && !tempNode.right) {
@@ -99,7 +99,7 @@ export default class BinarySearchTree {
 
       tempNode.value = replacementValue;
     }
-    return tempNode.value;
+    return true;
   }
 
   static fromArray(values: any[]): BinarySearchTree {

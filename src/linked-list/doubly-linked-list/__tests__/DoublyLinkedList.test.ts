@@ -141,17 +141,27 @@ describe('Doubly Linked List', () => {
       expect(testList.deleteAllOccurences(5)).toEqual(1);
       expect(testList.deleteAllOccurences(5)).toEqual(0);
       expect(testList.deleteAllOccurences(1)).toEqual(0);
+      expect(testList.deleteAllOccurences(6)).toEqual(1);
       expect(testList.head).toEqual(3);
-      expect(testList.tail).toEqual(6);
+      expect(testList.tail).toEqual(4);
     });
   });
 
-  it('Should be able to prepend', () => {
-    const testList = DoublyLinkedList.fromArray([1, 1, 1, 4, 5, 6]);
-    expect(testList.length).toEqual(6);
-    testList.prepend(9);
-    expect(testList.head).toEqual(9);
-    expect(testList.length).toEqual(7);
+  describe('Should be able to prepend', () => {
+    it('empty List', () => {
+      const testList = new DoublyLinkedList();
+      testList.prepend(1);
+      expect(testList.head).toEqual(1);
+      expect(testList.tail).toEqual(1);
+      expect(testList.length).toEqual(1);
+    });
+    it('non empty', () => {
+      const testList = DoublyLinkedList.fromArray([1, 1, 1, 4, 5, 6]);
+      expect(testList.length).toEqual(6);
+      testList.prepend(9);
+      expect(testList.head).toEqual(9);
+      expect(testList.length).toEqual(7);
+    });
   });
 
   describe('Should be able to exort to Array', () => {
