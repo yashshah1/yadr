@@ -40,14 +40,15 @@ export default class BinarySearchTree {
     }
   }
 
-  find(value: any) {
-    if (this.isEmpty()) return null;
+  find(value: any): boolean {
+    if (this.isEmpty()) return false;
     let tempNode: BinarySearchTreeNode | null = this.root;
     while (tempNode) {
       if (value < tempNode.value) tempNode = tempNode.left;
       else if (value > tempNode.value) tempNode = tempNode.right;
-      else return tempNode.value;
+      else return true;
     }
+    return false;
   }
 
   isEmpty(): boolean {

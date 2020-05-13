@@ -1,6 +1,6 @@
 import LinkedListQueue from '../LinkedListQueue';
 
-describe('Array Queue', () => {
+describe('Linked List Queue', () => {
   it('Should be created', () => {
     const queue = new LinkedListQueue();
     expect(queue.size()).toEqual(0);
