@@ -15,10 +15,10 @@ export default class AVLTree {
     return this._root;
   }
 
-  insert(value: any) {
+  insert(value: any): void {
     const nodeToBeInserted = new AVLTreeNode(value);
     let tempNode: AVLTreeNode | null = this.root;
-    if (!this.root) {
+    if (this.isEmpty()) {
       this._root = nodeToBeInserted;
     } else {
       while (tempNode) {
@@ -136,6 +136,69 @@ export default class AVLTree {
     }
 
     right!.left = node;
+  }
+
+  remove(value: any): boolean {
+    if (this.isEmpty()) return false;
+    let tempNode: AVLTreeNode | null = this.root;
+    let isLeftChild: boolean = false;
+    while (tempNode && tempNode.value !== value) {
+      if (value < tempNode.value) {
+        tempNode = tempNode.left;
+        isLeftChild = true;
+      } else {
+        tempNode = tempNode.right;
+        isLeftChild = false;
+      }
+    }
+    if (!tempNode) return false;
+
+    // No children
+    if (!tempNode.left && !tempNode.right) {
+      // tempNode is root
+      if (!tempNode.parent) this._root = null;
+      else if (isLeftChild) tempNode.parent.left = null;
+      else tempNode.parent.right = null;
+    }
+    // no right child
+    else if (!tempNode.right) {
+      if (!tempNode.parent) this._root = tempNode.left;
+      else if (isLeftChild) tempNode.parent.left = tempNode.left;
+      else tempNode.parent.right = tempNode.left;
+    }
+    // no left child
+    else if (!tempNode.left) {
+      if (!tempNode.parent) this._root = tempNode.right;
+      else if (isLeftChild) tempNode.parent.left = tempNode.right;
+      else tempNode.parent.right = tempNode.right;
+    }
+    // has both children
+    else {
+      let replacementNode: AVLTreeNode | null = tempNode.left;
+      let replacementValue: any;
+      while (replacementNode.right) replacementNode = replacementNode.right;
+      replacementValue = replacementNode.value;
+      this.remove(replacementValue);
+
+      tempNode.value = replacementValue;
+    }
+    if (!this.isEmpty()) this.balance(this.root as AVLTreeNode);
+    return true;
+  }
+
+  isEmpty(): boolean {
+    return this.root === null;
+  }
+
+  find(value: any): boolean {
+    if (this.isEmpty()) return false;
+    let tempNode: AVLTreeNode | null = this.root;
+    while (tempNode) {
+      if (value < tempNode.value) tempNode = tempNode.left;
+      else if (value > tempNode.value) tempNode = tempNode.right;
+      else return true;
+    }
+    return false;
   }
 
   static fromArray(values: any[]): AVLTree {
