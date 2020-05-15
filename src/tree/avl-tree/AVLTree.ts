@@ -4,11 +4,14 @@
  */
 
 import AVLTreeNode from './AVLTreeNode';
+import ComparatorClass from '../../utils/Comparator';
 
 export default class AVLTree {
   private _root: AVLTreeNode | null;
-  constructor() {
+  private _compare: ComparatorClass;
+  constructor(compareFunction?: (x: any, y: any) => number) {
     this._root = null;
+    this._compare = new ComparatorClass(compareFunction);
   }
 
   get root(): AVLTreeNode | null {
@@ -22,7 +25,7 @@ export default class AVLTree {
       this._root = nodeToBeInserted;
     } else {
       while (tempNode) {
-        if (value < tempNode.value) {
+        if (this._compare.isLesserThan(value, tempNode!.value)) {
           if (tempNode.left) tempNode = tempNode.left;
           else {
             tempNode.left = nodeToBeInserted;
@@ -34,7 +37,7 @@ export default class AVLTree {
             }
             break;
           }
-        } else if (value > tempNode.value) {
+        } else if (this._compare.isGreaterThan(value, tempNode!.value)) {
           if (tempNode.right) tempNode = tempNode.right;
           else {
             tempNode.right = nodeToBeInserted;
@@ -143,7 +146,7 @@ export default class AVLTree {
     let tempNode: AVLTreeNode | null = this.root;
     let isLeftChild: boolean = false;
     while (tempNode && tempNode.value !== value) {
-      if (value < tempNode.value) {
+      if (this._compare.isLesserThan(value, tempNode!.value)) {
         tempNode = tempNode.left;
         isLeftChild = true;
       } else {
@@ -194,8 +197,10 @@ export default class AVLTree {
     if (this.isEmpty()) return false;
     let tempNode: AVLTreeNode | null = this.root;
     while (tempNode) {
-      if (value < tempNode.value) tempNode = tempNode.left;
-      else if (value > tempNode.value) tempNode = tempNode.right;
+      if (this._compare.isLesserThan(value, tempNode!.value))
+        tempNode = tempNode.left;
+      else if (this._compare.isGreaterThan(value, tempNode!.value))
+        tempNode = tempNode.right;
       else return true;
     }
     return false;

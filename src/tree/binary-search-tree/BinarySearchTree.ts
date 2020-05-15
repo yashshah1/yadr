@@ -5,11 +5,14 @@
 
 import BinarySearchTreeNode from './BinarySearchTreeNode';
 import Stack from '../../stack/ArrayStack';
+import ComparatorClass from '../../utils/Comparator';
 
 export default class BinarySearchTree {
   private _root: BinarySearchTreeNode | null;
-  constructor() {
+  private _compare: ComparatorClass;
+  constructor(compareFunction?: (x: any, y: any) => number) {
     this._root = null;
+    this._compare = new ComparatorClass(compareFunction);
   }
 
   get root(): BinarySearchTreeNode | null {
@@ -23,13 +26,13 @@ export default class BinarySearchTree {
     } else {
       let tempNode: BinarySearchTreeNode | null = this.root;
       while (true) {
-        if (value < tempNode!.value) {
+        if (this._compare.isLesserThan(value, tempNode!.value)) {
           if (tempNode!.left) tempNode = tempNode!.left;
           else {
             tempNode!.left = nodeToBeInserted;
             break;
           }
-        } else if (value > tempNode!.value) {
+        } else if (this._compare.isGreaterThan(value, tempNode!.value)) {
           if (tempNode!.right) tempNode = tempNode!.right;
           else {
             tempNode!.right = nodeToBeInserted;
@@ -44,8 +47,10 @@ export default class BinarySearchTree {
     if (this.isEmpty()) return false;
     let tempNode: BinarySearchTreeNode | null = this.root;
     while (tempNode) {
-      if (value < tempNode.value) tempNode = tempNode.left;
-      else if (value > tempNode.value) tempNode = tempNode.right;
+      if (this._compare.isLesserThan(value, tempNode!.value))
+        tempNode = tempNode.left;
+      else if (this._compare.isGreaterThan(value, tempNode!.value))
+        tempNode = tempNode.right;
       else return true;
     }
     return false;
@@ -60,7 +65,7 @@ export default class BinarySearchTree {
     let tempNode: BinarySearchTreeNode | null = this.root;
     let isLeftChild: boolean = false;
     while (tempNode && tempNode.value !== value) {
-      if (value < tempNode.value) {
+      if (this._compare.isLesserThan(value, tempNode!.value)) {
         tempNode = tempNode.left;
         isLeftChild = true;
       } else {
