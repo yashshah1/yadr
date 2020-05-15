@@ -1,4 +1,7 @@
 <img width=200 src="https://raw.githubusercontent.com/yashshah1/yard-ts/master/assets/logo.svg">
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # yard-ts - Yet Another Repository of Datastructures - Ts
 
@@ -71,3 +74,22 @@ Feel free to fork and raise a PR with any bugfix / contribution.
 # License
 
 Code is distributed under MIT License. Full license [here](https://github.com/yashshah1/datastructures-ts/blob/master/LICENSE)
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/naman-modi"><img src="https://avatars3.githubusercontent.com/u/38180263?v=4" width="100px;" alt=""/><br /><sub><b>Naman Modi</b></sub></a><br /><a href="https://github.com/yashshah1/yard-ts/commits?author=naman-modi" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
