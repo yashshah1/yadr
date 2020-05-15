@@ -6,7 +6,7 @@
     "datastructures",
     "typescript"
   ],
-  "homepage": "https://github.com/yashshah1/yard-ts",
+  "homepage": "https://github.com/yashshah1/yard-ts#readme",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
