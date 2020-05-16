@@ -14,6 +14,8 @@ Targets to be a hlighly powerful, low dependency set of datastructures written i
 - [yard-ts - Yet Another Repository of Datastructures - Ts](#yard-ts---yet-another-repository-of-datastructures---ts)
 - [Table Of Contents](#table-of-contents)
 - [Install](#install)
+  - [For the latest release version](#for-the-latest-release-version)
+  - [To get the cool stuff right away](#to-get-the-cool-stuff-right-away)
 - [Usage](#usage)
   - [CommonJS](#commonjs)
   - [ES](#es)
@@ -26,9 +28,11 @@ Targets to be a hlighly powerful, low dependency set of datastructures written i
 
 # Install
 
-```sh
-npm i yard-ts
-```
+## For the latest release version
+`npm i yard-ts`
+
+## To get the cool stuff right away
+`npm i yashshah1/yard-ts#master`
 
 # Usage
 
@@ -59,6 +63,7 @@ import ds from 'yard-ts';
 - Binary Trees
   - Binary Search Tree - done
   - AVL Tree - done (tests pending)
+- Trie - done (tests pending)
 - Graph - in progress
 - Heap - in progress
 - Priority Queue - in progress
@@ -66,7 +71,9 @@ import ds from 'yard-ts';
 
 # Contributing
 
-Feel free to fork and raise a PR with any bugfix / contribution.
+Feel free to fork and raise a PR with any bugfix / contribution. <br/>
+See [Status](#status) for things that are pending
+
 
 ## Naming Convention
 
