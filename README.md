@@ -1,4 +1,5 @@
 <img width=200 src="https://raw.githubusercontent.com/yashshah1/yard-ts/master/assets/logo.svg">
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -21,6 +22,7 @@ Targets to be a hlighly powerful, low dependency set of datastructures written i
   - [Naming Convention](#naming-convention)
 - [Testing](#testing)
 - [License](#license)
+  - [Contributors ✨](#contributors-%e2%9c%a8)
 
 # Install
 
