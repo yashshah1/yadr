@@ -53,23 +53,23 @@ export default class AVLTree {
       }
     }
     while (tempNode) {
-      this.balance(tempNode);
+      this._balance(tempNode);
       tempNode = tempNode.parent;
     }
   }
 
-  balance(node: AVLTreeNode) {
+  private _balance(node: AVLTreeNode) {
     if (node.balance > 1) {
       // L
-      if (node.left!.balance > 0) this.rotateLeftLeft(node);
-      else if (node.left!.balance < 0) this.rotateLeftRight(node);
+      if (node.left!.balance > 0) this._rotateLeftLeft(node);
+      else if (node.left!.balance < 0) this._rotateLeftRight(node);
     } else if (node.balance < -1) {
-      if (node.right!.balance < 0) this.rotateRightRight(node);
-      else if (node.right!.balance > 0) this.rotateRightLeft(node);
+      if (node.right!.balance < 0) this._rotateRightRight(node);
+      else if (node.right!.balance > 0) this._rotateRightLeft(node);
     }
   }
 
-  rotateLeftLeft(node: AVLTreeNode) {
+  private _rotateLeftLeft(node: AVLTreeNode) {
     const left = node.left;
     node.left = null;
 
@@ -86,7 +86,7 @@ export default class AVLTree {
     left!.right = node;
   }
 
-  rotateLeftRight(node: AVLTreeNode) {
+  private _rotateLeftRight(node: AVLTreeNode) {
     const left = node.left;
     node.left = null;
 
@@ -102,10 +102,10 @@ export default class AVLTree {
 
     leftRight!.left = left;
 
-    this.rotateLeftLeft(node);
+    this._rotateLeftLeft(node);
   }
 
-  rotateRightLeft(node: AVLTreeNode) {
+  private _rotateRightLeft(node: AVLTreeNode) {
     const right = node.right;
     node.right = null;
 
@@ -121,10 +121,10 @@ export default class AVLTree {
 
     rightLeft!.right = right;
 
-    this.rotateRightRight(node);
+    this._rotateRightRight(node);
   }
 
-  rotateRightRight(node: AVLTreeNode) {
+  private _rotateRightRight(node: AVLTreeNode) {
     const right = node.right;
     node.right = null;
 
@@ -185,7 +185,7 @@ export default class AVLTree {
 
       tempNode.value = replacementValue;
     }
-    if (!this.isEmpty()) this.balance(this.root as AVLTreeNode);
+    if (!this.isEmpty()) this._balance(this.root as AVLTreeNode);
     return true;
   }
 
