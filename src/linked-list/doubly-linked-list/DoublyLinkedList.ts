@@ -13,10 +13,10 @@ import ComparatorClass from '../../utils/Comparator';
  * @class DoublyLinkedList
  * Implementation of the Doubly Linked List
  */
-export default class DoublyLinkedList {
+export default class DoublyLinkedList<T> {
   private _count: number;
-  private _head: DoublyLinkedListNode | null;
-  private _tail: DoublyLinkedListNode | null;
+  private _head: DoublyLinkedListNode<T> | null;
+  private _tail: DoublyLinkedListNode<T> | null;
   private _compare: ComparatorClass;
 
   /**
@@ -26,21 +26,21 @@ export default class DoublyLinkedList {
    * Read: http://www.cplusplus.com/reference/cstdlib/qsort/
    * Or it will by default be set to "a - b"
    */
-  constructor(compareFunction?: (x: any, y: any) => number) {
+  constructor(compareFunction?: (x: T, y: T) => number) {
     this._head = null;
     this._tail = null;
     this._count = 0;
     this._compare = new ComparatorClass(compareFunction);
   }
 
-  static fromArray(elements: any[]): DoublyLinkedList {
-    const list: DoublyLinkedList = new DoublyLinkedList();
+  static fromArray<U>(elements: U[]): DoublyLinkedList<U> {
+    const list: DoublyLinkedList<U> = new DoublyLinkedList();
     elements.forEach((element) => list.append(element));
     return list;
   }
 
-  prepend(value: any): void {
-    const nodeToBeAdded: DoublyLinkedListNode = new DoublyLinkedListNode(
+  prepend(value: T): void {
+    const nodeToBeAdded: DoublyLinkedListNode<T> = new DoublyLinkedListNode(
       value,
       null,
       this._head,
@@ -52,8 +52,8 @@ export default class DoublyLinkedList {
     this._head = nodeToBeAdded;
   }
 
-  append(value: any): void {
-    const nodeToBeAdded: DoublyLinkedListNode = new DoublyLinkedListNode(
+  append(value: T): void {
+    const nodeToBeAdded: DoublyLinkedListNode<T> = new DoublyLinkedListNode(
       value,
       this._tail,
       null,
@@ -65,9 +65,9 @@ export default class DoublyLinkedList {
     this._tail = nodeToBeAdded;
   }
 
-  deleteFirst(): any {
+  deleteFirst(): T | null {
     if (this.isEmpty()) return null;
-    const tempNode: DoublyLinkedListNode | null = this._head;
+    const tempNode: DoublyLinkedListNode<T> | null = this._head;
 
     this._head = this._head!.next;
     if (this._head) this._head.prev = null;
@@ -76,9 +76,9 @@ export default class DoublyLinkedList {
     return tempNode!.value;
   }
 
-  deleteLast(): any {
+  deleteLast(): T | null {
     if (this.isEmpty()) return null;
-    const tempNode: DoublyLinkedListNode | null = this._tail;
+    const tempNode: DoublyLinkedListNode<T> | null = this._tail;
 
     this._tail = this._tail!.prev;
     if (this._tail) this._tail.next = null;
@@ -87,11 +87,11 @@ export default class DoublyLinkedList {
     return tempNode!.value;
   }
 
-  deleteFirstOccurence(value: any): boolean {
+  deleteFirstOccurence(value: T): boolean {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return false;
-    let prev: DoublyLinkedListNode | null = null;
-    let curr: DoublyLinkedListNode | null = this._head;
+    let prev: DoublyLinkedListNode<T> | null = null;
+    let curr: DoublyLinkedListNode<T> | null = this._head;
     let deletedFlag = false;
     while (curr) {
       if (this._compare.isEqual(curr.value, value)) {
@@ -114,11 +114,11 @@ export default class DoublyLinkedList {
     return deletedFlag;
   }
 
-  deleteAllOccurences(value: number): number {
+  deleteAllOccurences(value: T): number {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return 0;
-    let prev: DoublyLinkedListNode | null = null;
-    let curr: DoublyLinkedListNode | null = this._head;
+    let prev: DoublyLinkedListNode<T> | null = null;
+    let curr: DoublyLinkedListNode<T> | null = this._head;
     let deletedCount: number = 0;
 
     while (curr) {
@@ -142,10 +142,10 @@ export default class DoublyLinkedList {
     return this._count === 0;
   }
 
-  toArray(): any[] {
-    const returnValue: any[] = [];
+  toArray(): T[] {
+    const returnValue: T[] = [];
     if (this.isEmpty()) return returnValue;
-    let curr: DoublyLinkedListNode | null = this._head;
+    let curr: DoublyLinkedListNode<T> | null = this._head;
 
     while (curr) {
       returnValue.push(curr.value);
@@ -154,12 +154,12 @@ export default class DoublyLinkedList {
     return returnValue;
   }
 
-  get head(): any | null {
+  get head(): T | null {
     if (this._head) return this._head.value;
     else return null;
   }
 
-  get tail(): any | null {
+  get tail(): T | null {
     if (this._tail) return this._tail.value;
     else return null;
   }
@@ -174,14 +174,14 @@ export default class DoublyLinkedList {
     this._count = 0;
   }
 
-  filter(callback: (value: any) => boolean): DoublyLinkedList | null {
+  filter(callback: (value: any) => boolean): DoublyLinkedList<T> | null {
     // TODO: Isolate the loop into a foreach function
     // if (typeof callback !== 'function')
     //   throw new Error('callback must be a function');
     if (this.isEmpty()) return null;
 
-    const returnValue: DoublyLinkedList = new DoublyLinkedList();
-    let curr: DoublyLinkedListNode | null = this._head;
+    const returnValue: DoublyLinkedList<T> = new DoublyLinkedList();
+    let curr: DoublyLinkedListNode<T> | null = this._head;
     while (curr) {
       if (callback(curr.value)) returnValue.append(curr.value);
       curr = curr.next;

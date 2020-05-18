@@ -6,21 +6,21 @@
 import AVLTreeNode from './AVLTreeNode';
 import ComparatorClass from '../../utils/Comparator';
 
-export default class AVLTree {
-  private _root: AVLTreeNode | null;
+export default class AVLTree<T> {
+  private _root: AVLTreeNode<T> | null;
   private _compare: ComparatorClass;
-  constructor(compareFunction?: (x: any, y: any) => number) {
+  constructor(compareFunction?: (x: T, y: T) => number) {
     this._root = null;
     this._compare = new ComparatorClass(compareFunction);
   }
 
-  get root(): AVLTreeNode | null {
+  get root(): AVLTreeNode<T> | null {
     return this._root;
   }
 
-  insert(value: any): void {
-    const nodeToBeInserted = new AVLTreeNode(value);
-    let tempNode: AVLTreeNode | null = this.root;
+  insert(value: T): void {
+    const nodeToBeInserted = new AVLTreeNode<T>(value);
+    let tempNode: AVLTreeNode<T> | null = this._root;
     if (this.isEmpty()) {
       this._root = nodeToBeInserted;
     } else {
@@ -58,7 +58,7 @@ export default class AVLTree {
     }
   }
 
-  private _balance(node: AVLTreeNode) {
+  private _balance(node: AVLTreeNode<T>) {
     if (node.balance > 1) {
       // L
       if (node.left!.balance > 0) this._rotateLeftLeft(node);
@@ -69,13 +69,13 @@ export default class AVLTree {
     }
   }
 
-  private _rotateLeftLeft(node: AVLTreeNode) {
+  private _rotateLeftLeft(node: AVLTreeNode<T>) {
     const left = node.left;
     node.left = null;
 
     if (node.parent) {
       node.parent.left = left;
-    } else if (node === this.root) {
+    } else if (node === this._root) {
       this._root = left;
     }
 
@@ -86,7 +86,7 @@ export default class AVLTree {
     left!.right = node;
   }
 
-  private _rotateLeftRight(node: AVLTreeNode) {
+  private _rotateLeftRight(node: AVLTreeNode<T>) {
     const left = node.left;
     node.left = null;
 
@@ -105,7 +105,7 @@ export default class AVLTree {
     this._rotateLeftLeft(node);
   }
 
-  private _rotateRightLeft(node: AVLTreeNode) {
+  private _rotateRightLeft(node: AVLTreeNode<T>) {
     const right = node.right;
     node.right = null;
 
@@ -124,13 +124,13 @@ export default class AVLTree {
     this._rotateRightRight(node);
   }
 
-  private _rotateRightRight(node: AVLTreeNode) {
+  private _rotateRightRight(node: AVLTreeNode<T>) {
     const right = node.right;
     node.right = null;
 
     if (node.parent) {
       node.parent.right = right;
-    } else if (node === this.root) {
+    } else if (node === this._root) {
       this._root = right;
     }
 
@@ -141,9 +141,9 @@ export default class AVLTree {
     right!.left = node;
   }
 
-  remove(value: any): boolean {
+  remove(value: T): boolean {
     if (this.isEmpty()) return false;
-    let tempNode: AVLTreeNode | null = this.root;
+    let tempNode: AVLTreeNode<T> | null = this._root;
     let isLeftChild: boolean = false;
     while (tempNode && tempNode.value !== value) {
       if (this._compare.isLesserThan(value, tempNode!.value)) {
@@ -177,7 +177,7 @@ export default class AVLTree {
     }
     // has both children
     else {
-      let replacementNode: AVLTreeNode | null = tempNode.left;
+      let replacementNode: AVLTreeNode<T> | null = tempNode.left;
       let replacementValue: any;
       while (replacementNode.right) replacementNode = replacementNode.right;
       replacementValue = replacementNode.value;
@@ -185,17 +185,17 @@ export default class AVLTree {
 
       tempNode.value = replacementValue;
     }
-    if (!this.isEmpty()) this._balance(this.root as AVLTreeNode);
+    if (!this.isEmpty()) this._balance(this._root as AVLTreeNode<T>);
     return true;
   }
 
   isEmpty(): boolean {
-    return this.root === null;
+    return this._root === null;
   }
 
-  find(value: any): boolean {
+  find(value: T): boolean {
     if (this.isEmpty()) return false;
-    let tempNode: AVLTreeNode | null = this.root;
+    let tempNode: AVLTreeNode<T> | null = this._root;
     while (tempNode) {
       if (this._compare.isLesserThan(value, tempNode!.value))
         tempNode = tempNode.left;
@@ -206,8 +206,8 @@ export default class AVLTree {
     return false;
   }
 
-  static fromArray(values: any[]): AVLTree {
-    const tree = new AVLTree();
+  static fromArray<U>(values: U[]): AVLTree<U> {
+    const tree = new AVLTree<U>();
     values.forEach((elem) => tree.insert(elem));
     return tree;
   }

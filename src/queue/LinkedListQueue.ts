@@ -9,14 +9,14 @@ import LinkedList from '../linked-list/singly-linked-list/';
  * @class LinkedListQueue
  * implements FIFO using LinkedList
  */
-export default class LinkedListQueue {
+export default class LinkedListQueue<T> {
   /**
    * Initialise the class
    * @constructor
    */
-  private _q: LinkedList;
+  private _q: LinkedList<T>;
   constructor() {
-    this._q = new LinkedList();
+    this._q = new LinkedList<T>();
   }
 
   /**
@@ -24,7 +24,7 @@ export default class LinkedListQueue {
    * @param {*} e Element to be enqueued
    * @return {undefined}
    */
-  enqueue(e: any): void {
+  enqueue(e: T): void {
     this._q.append(e);
   }
 
@@ -32,7 +32,7 @@ export default class LinkedListQueue {
    * Dequeues an element
    * @return {*}
    */
-  dequeue(): any | null {
+  dequeue(): T | null {
     if (this.isEmpty()) return null;
     return this._q.deleteFirst();
   }
@@ -49,7 +49,7 @@ export default class LinkedListQueue {
    * Returns the oldest element still in the queue
    * @return {*}
    */
-  front(): any | null {
+  front(): T | null {
     return this._q.head;
   }
 
@@ -57,7 +57,7 @@ export default class LinkedListQueue {
    * Returns the newest element in the queue
    * @return {*}
    */
-  back(): any | null {
+  back(): T | null {
     return this._q.tail;
   }
 
@@ -83,7 +83,7 @@ export default class LinkedListQueue {
    * First element of the list will be the oldest
    * element in the queue.
    */
-  toArray(): any[] {
+  toArray(): T[] {
     return this._q.toArray();
   }
 }

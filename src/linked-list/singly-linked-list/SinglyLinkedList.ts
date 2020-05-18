@@ -13,10 +13,10 @@ import ComparatorClass from '../../utils/Comparator';
  * @class SinglyLinkedList
  * Implementation of the Singly Linked List
  */
-export default class SinglyLinkedList {
+export default class SinglyLinkedList<T> {
   private _count: number;
-  private _head: SinglyLinkedListNode | null;
-  private _tail: SinglyLinkedListNode | null;
+  private _head: SinglyLinkedListNode<T> | null;
+  private _tail: SinglyLinkedListNode<T> | null;
   private _compare: ComparatorClass;
 
   /**
@@ -27,21 +27,21 @@ export default class SinglyLinkedList {
    * Or it will by default be set to "a - b"
    */
 
-  constructor(compareFunction?: (x: any, y: any) => number) {
+  constructor(compareFunction?: (x: T, y: T) => number) {
     this._head = null;
     this._tail = null;
     this._count = 0;
     this._compare = new ComparatorClass(compareFunction);
   }
 
-  static fromArray(elements: any[]): SinglyLinkedList {
-    const list: SinglyLinkedList = new SinglyLinkedList();
+  static fromArray<U>(elements: U[]): SinglyLinkedList<U> {
+    const list: SinglyLinkedList<U> = new SinglyLinkedList();
     elements.forEach((element) => list.append(element));
     return list;
   }
 
-  prepend(value: any): void {
-    const nodeToBeAdded: SinglyLinkedListNode = new SinglyLinkedListNode(
+  prepend(value: T): void {
+    const nodeToBeAdded: SinglyLinkedListNode<T> = new SinglyLinkedListNode(
       value,
       this._head,
     );
@@ -50,8 +50,10 @@ export default class SinglyLinkedList {
     this._count++;
   }
 
-  append(value: any): void {
-    const nodeToBeAdded: SinglyLinkedListNode = new SinglyLinkedListNode(value);
+  append(value: T): void {
+    const nodeToBeAdded: SinglyLinkedListNode<T> = new SinglyLinkedListNode(
+      value,
+    );
 
     if (!this._head) {
       this._head = nodeToBeAdded;
@@ -64,11 +66,11 @@ export default class SinglyLinkedList {
     return;
   }
 
-  deleteFirstOccurence(value: any): boolean {
+  deleteFirstOccurence(value: T): boolean {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return false;
-    let prev: SinglyLinkedListNode | null = null;
-    let curr: SinglyLinkedListNode | null = this._head;
+    let prev: SinglyLinkedListNode<T> | null = null;
+    let curr: SinglyLinkedListNode<T> | null = this._head;
     let deletedFlag = false;
 
     while (curr) {
@@ -89,11 +91,11 @@ export default class SinglyLinkedList {
     return deletedFlag;
   }
 
-  deleteAllOccurences(value: number): number {
+  deleteAllOccurences(value: T): number {
     // if (typeof value === 'undefined') throw new Error('Value must be passed');
     if (this.isEmpty()) return 0;
-    let prev: SinglyLinkedListNode | null = null;
-    let curr: SinglyLinkedListNode | null = this._head;
+    let prev: SinglyLinkedListNode<T> | null = null;
+    let curr: SinglyLinkedListNode<T> | null = this._head;
     let deletedCount: number = 0;
 
     while (curr) {
@@ -111,7 +113,7 @@ export default class SinglyLinkedList {
     return deletedCount;
   }
 
-  deleteFirst(): any | null {
+  deleteFirst(): T | null {
     if (this.isEmpty()) return null;
     const tempNode = this._head;
     this._head = tempNode!.next;
@@ -121,11 +123,11 @@ export default class SinglyLinkedList {
     return tempNode!.value;
   }
 
-  deleteLast(): any | null {
+  deleteLast(): T | null {
     if (this.isEmpty()) return null;
 
-    let prev: SinglyLinkedListNode | null = null;
-    let curr: SinglyLinkedListNode | null = this._head;
+    let prev: SinglyLinkedListNode<T> | null = null;
+    let curr: SinglyLinkedListNode<T> | null = this._head;
     if (this._count === 1) return this.deleteFirst();
 
     while (curr!.next) {
@@ -143,10 +145,10 @@ export default class SinglyLinkedList {
     return this._count === 0;
   }
 
-  toArray(): any[] {
-    const returnValue: any[] = [];
+  toArray(): T[] {
+    const returnValue: T[] = [];
     if (!this.isEmpty()) {
-      let curr: SinglyLinkedListNode | null = this._head;
+      let curr: SinglyLinkedListNode<T> | null = this._head;
 
       while (curr) {
         returnValue.push(curr.value);
@@ -156,12 +158,12 @@ export default class SinglyLinkedList {
     return returnValue;
   }
 
-  get head(): any | null {
+  get head(): T | null {
     if (this._head) return this._head.value;
     else return null;
   }
 
-  get tail(): any | null {
+  get tail(): T | null {
     if (this._tail) return this._tail.value;
     else return null;
   }
@@ -175,13 +177,13 @@ export default class SinglyLinkedList {
     this._count = 0;
   }
 
-  filter(callback: (value: any) => boolean): SinglyLinkedList | null {
+  filter(callback: (value: T) => boolean): SinglyLinkedList<T> | null {
     // TODO: Isolate the loop into a foreach function
     // if (typeof callback !== 'function') throw new Error('callback must be a function');
     if (this.isEmpty()) return null;
 
-    const returnValue: SinglyLinkedList = new SinglyLinkedList();
-    let curr: SinglyLinkedListNode | null = this._head;
+    const returnValue: SinglyLinkedList<T> = new SinglyLinkedList();
+    let curr: SinglyLinkedListNode<T> | null = this._head;
     while (curr) {
       if (callback(curr.value)) returnValue.append(curr.value);
       curr = curr.next;

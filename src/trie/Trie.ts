@@ -26,14 +26,14 @@ export default class Trie {
   remove(word: string): boolean {
     if (this.isEmpty()) return false;
     if (word.length === 0) return false;
-    const stack = new Stack();
+    const stack = new Stack<TrieNode>();
     let index = 0;
     let currentNode: TrieNode | null = this._root;
 
-    stack.push(currentNode);
+    stack.push(currentNode as TrieNode);
     while (index < word.length && currentNode) {
       currentNode = currentNode.getChild(word[index]);
-      stack.push(currentNode);
+      stack.push(currentNode as TrieNode);
       index++;
     }
 

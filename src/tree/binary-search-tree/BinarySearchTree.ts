@@ -7,24 +7,24 @@ import BinarySearchTreeNode from './BinarySearchTreeNode';
 import Stack from '../../stack/ArrayStack';
 import ComparatorClass from '../../utils/Comparator';
 
-export default class BinarySearchTree {
-  private _root: BinarySearchTreeNode | null;
+export default class BinarySearchTree<T> {
+  private _root: BinarySearchTreeNode<T> | null;
   private _compare: ComparatorClass;
-  constructor(compareFunction?: (x: any, y: any) => number) {
+  constructor(compareFunction?: (x: T, y: T) => number) {
     this._root = null;
     this._compare = new ComparatorClass(compareFunction);
   }
 
-  get root(): BinarySearchTreeNode | null {
+  get root(): BinarySearchTreeNode<T> | null {
     return this._root;
   }
 
-  insert(value: any): void {
-    const nodeToBeInserted = new BinarySearchTreeNode(value);
+  insert(value: T): void {
+    const nodeToBeInserted = new BinarySearchTreeNode<T>(value);
     if (!this.root) {
       this._root = nodeToBeInserted;
     } else {
-      let tempNode: BinarySearchTreeNode | null = this.root;
+      let tempNode: BinarySearchTreeNode<T> | null = this.root;
       while (true) {
         if (this._compare.isLesserThan(value, tempNode!.value)) {
           if (tempNode!.left) tempNode = tempNode!.left;
@@ -43,9 +43,9 @@ export default class BinarySearchTree {
     }
   }
 
-  find(value: any): boolean {
+  find(value: T): boolean {
     if (this.isEmpty()) return false;
-    let tempNode: BinarySearchTreeNode | null = this.root;
+    let tempNode: BinarySearchTreeNode<T> | null = this.root;
     while (tempNode) {
       if (this._compare.isLesserThan(value, tempNode!.value))
         tempNode = tempNode.left;
@@ -60,9 +60,9 @@ export default class BinarySearchTree {
     return this.root === null;
   }
 
-  remove(value: any): boolean {
+  remove(value: T): boolean {
     if (this.isEmpty()) return false;
-    let tempNode: BinarySearchTreeNode | null = this.root;
+    let tempNode: BinarySearchTreeNode<T> | null = this.root;
     let isLeftChild: boolean = false;
     while (tempNode && tempNode.value !== value) {
       if (this._compare.isLesserThan(value, tempNode!.value)) {
@@ -96,7 +96,7 @@ export default class BinarySearchTree {
     }
     // has both children
     else {
-      let replacementNode: BinarySearchTreeNode | null = tempNode.left;
+      let replacementNode: BinarySearchTreeNode<T> | null = tempNode.left;
       let replacementValue: any;
       while (replacementNode.right) replacementNode = replacementNode.right;
       replacementValue = replacementNode.value;
@@ -107,16 +107,16 @@ export default class BinarySearchTree {
     return true;
   }
 
-  static fromArray(values: any[]): BinarySearchTree {
-    const tree = new BinarySearchTree();
+  static fromArray<U>(values: U[]): BinarySearchTree<U> {
+    const tree = new BinarySearchTree<U>();
     values.forEach((element) => tree.insert(element));
     return tree;
   }
 
-  inOrder(): any[] {
+  inOrder(): T[] {
     if (this.isEmpty()) return [];
-    const stack = new Stack();
-    const outputArray = [];
+    const stack = new Stack<BinarySearchTreeNode<T>>();
+    const outputArray: T[] = [];
     let currentNode = this.root;
     while (true) {
       if (currentNode) {
