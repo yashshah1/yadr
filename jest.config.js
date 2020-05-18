@@ -1,5 +1,4 @@
 module.exports = {
-  bail: true,
   cache: false,
   verbose: true,
   transform: {
