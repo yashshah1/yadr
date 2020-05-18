@@ -6,10 +6,10 @@
 // TODO: Add documentation
 
 /**
- * @class DoublyLinkedListNode
+ * @class DoublyLinkedListNode<T>
  * A node to be used by the Doubly Linked List
  */
-export default class DoublyLinkedListNode {
+export default class DoublyLinkedListNode<T> {
   /**
    * @constructor
    * @param {*} value Value stored in the node
@@ -17,16 +17,16 @@ export default class DoublyLinkedListNode {
    * @param {(DoublyLinkedListNode|null)} next The next node in the Linked List
    */
   constructor(
-    private _value: any,
-    private _prev: DoublyLinkedListNode | null = null,
-    private _next: DoublyLinkedListNode | null = null,
+    private _value: T,
+    private _prev: DoublyLinkedListNode<T> | null = null,
+    private _next: DoublyLinkedListNode<T> | null = null,
   ) {}
 
   /**
    * returns the value of the node
    * @return {*} Value stored in the node
    */
-  get value(): any {
+  get value(): T {
     return this._value;
   }
 
@@ -34,7 +34,7 @@ export default class DoublyLinkedListNode {
    * sets the value of the node
    * @param {*} value Value to be stored in the node
    */
-  set value(value: any) {
+  set value(value: T) {
     this._value = value;
   }
 
@@ -42,7 +42,7 @@ export default class DoublyLinkedListNode {
    * returns the next node
    * @return {(DoublyLinkedListNode|null)} Value stored in the node
    */
-  get next(): DoublyLinkedListNode | null {
+  get next(): DoublyLinkedListNode<T> | null {
     return this._next;
   }
 
@@ -50,7 +50,7 @@ export default class DoublyLinkedListNode {
    * sets the next node
    * @param {(DoublyLinkedListNode|null)} next Reference to the next node
    */
-  set next(next: DoublyLinkedListNode | null) {
+  set next(next: DoublyLinkedListNode<T> | null) {
     this._next = next;
   }
 
@@ -58,7 +58,7 @@ export default class DoublyLinkedListNode {
    * returns the prev node
    * @return {(DoublyLinkedListNode|null)} Value stored in the node
    */
-  get prev(): DoublyLinkedListNode | null {
+  get prev(): DoublyLinkedListNode<T> | null {
     return this._prev;
   }
 
@@ -66,7 +66,7 @@ export default class DoublyLinkedListNode {
    * sets the prev node
    * @param {(DoublyLinkedListNode|null)} prev Reference to the prev node
    */
-  set prev(prev: DoublyLinkedListNode | null) {
+  set prev(prev: DoublyLinkedListNode<T> | null) {
     this._prev = prev;
   }
 }

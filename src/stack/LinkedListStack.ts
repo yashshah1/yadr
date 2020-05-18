@@ -10,19 +10,22 @@ import LinkedList from '../linked-list/doubly-linked-list/';
  * @class LinkedListStack
  * implements LIFO using LinkedList
  */
-export default class LinkedListStack {
+export default class LinkedListStack<T> {
   /**
    * Initialise the class
    * @constructor
    */
-  constructor(private _s: LinkedList = new LinkedList()) {}
+  private _s: LinkedList<T>;
+  constructor() {
+    this._s = new LinkedList<T>();
+  }
 
   /**
    * Pushes an element
    * @param {*} e Element to be pushed
    * @return {undefined}
    */
-  push(e: any): void {
+  push(e: T): void {
     this._s.append(e);
   }
 
@@ -30,7 +33,7 @@ export default class LinkedListStack {
    * Pops an element
    * @return {*}
    */
-  pop(): any | null {
+  pop(): T | null {
     return this._s.deleteLast();
   }
 
@@ -46,7 +49,7 @@ export default class LinkedListStack {
    * Returns the top element of the stack without deleting
    * @return {*}
    */
-  top(): any | null {
+  top(): T | null {
     return this._s.tail;
   }
 
@@ -72,7 +75,7 @@ export default class LinkedListStack {
    * First element of the list will be the oldest
    * element in the stack.
    */
-  toArray(): any[] {
+  toArray(): T[] {
     return this._s.toArray();
   }
 }

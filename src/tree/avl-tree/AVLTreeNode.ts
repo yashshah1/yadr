@@ -8,14 +8,14 @@
  * A node to be used by the Binary Search Tree
  */
 
-export default class AVLTreeNode {
+export default class AVLTreeNode<T> {
   private _height: number;
   // private _balance: number;
-  private _value: any;
-  private _left: AVLTreeNode | null;
-  private _right: AVLTreeNode | null;
-  private _parent: AVLTreeNode | null;
-  constructor(value: any = null) {
+  private _value: T;
+  private _left: AVLTreeNode<T> | null;
+  private _right: AVLTreeNode<T> | null;
+  private _parent: AVLTreeNode<T> | null;
+  constructor(value: T) {
     this._value = value;
     this._left = null;
     this._right = null;
@@ -40,41 +40,41 @@ export default class AVLTreeNode {
     return this.leftHeight - this.rightHeight;
   }
 
-  set value(value: any) {
+  set value(value: T) {
     this._value = value;
   }
 
-  get value(): any {
+  get value(): T {
     return this._value;
   }
 
-  set left(node: AVLTreeNode | null) {
+  set left(node: AVLTreeNode<T> | null) {
     this._left = node;
     if (this._left) this._left._parent = this;
   }
 
-  get left(): AVLTreeNode | null {
+  get left(): AVLTreeNode<T> | null {
     return this._left;
   }
 
-  set right(node: AVLTreeNode | null) {
+  set right(node: AVLTreeNode<T> | null) {
     this._right = node;
     if (this._right) this._right._parent = this;
   }
 
-  get right(): AVLTreeNode | null {
+  get right(): AVLTreeNode<T> | null {
     return this._right;
   }
 
-  set parent(node: AVLTreeNode | null) {
+  set parent(node: AVLTreeNode<T> | null) {
     this._parent = node;
   }
 
-  get parent(): AVLTreeNode | null {
+  get parent(): AVLTreeNode<T> | null {
     return this._parent;
   }
 
-  updateHeight() {
+  updateHeight(): void {
     this._height = Math.max(this.leftHeight, this.rightHeight) + 1;
   }
 }

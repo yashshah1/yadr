@@ -7,49 +7,49 @@
  * @class BinarySearchTreeNode
  * A node to be used by the Binary Search Tree
  */
-export default class BinarySearchTreeNode {
-  private _value: any;
-  private _left: BinarySearchTreeNode | null;
-  private _right: BinarySearchTreeNode | null;
-  private _parent: BinarySearchTreeNode | null;
-  constructor(value: any = null) {
+export default class BinarySearchTreeNode<T> {
+  private _value: T;
+  private _left: BinarySearchTreeNode<T> | null;
+  private _right: BinarySearchTreeNode<T> | null;
+  private _parent: BinarySearchTreeNode<T> | null;
+  constructor(value: T) {
     this._value = value;
     this._left = null;
     this._right = null;
     this._parent = null;
   }
 
-  set value(value: any) {
+  set value(value: T) {
     this._value = value;
   }
 
-  get value(): any {
+  get value(): T {
     return this._value;
   }
 
-  set left(node: BinarySearchTreeNode | null) {
+  set left(node: BinarySearchTreeNode<T> | null) {
     this._left = node;
     if (this._left) this._left._parent = this;
   }
 
-  get left(): BinarySearchTreeNode | null {
+  get left(): BinarySearchTreeNode<T> | null {
     return this._left;
   }
 
-  set right(node: BinarySearchTreeNode | null) {
+  set right(node: BinarySearchTreeNode<T> | null) {
     this._right = node;
     if (this._right) this._right._parent = this;
   }
 
-  get right(): BinarySearchTreeNode | null {
+  get right(): BinarySearchTreeNode<T> | null {
     return this._right;
   }
 
-  set parent(node: BinarySearchTreeNode | null) {
+  set parent(node: BinarySearchTreeNode<T> | null) {
     this._parent = node;
   }
 
-  get parent(): BinarySearchTreeNode | null {
+  get parent(): BinarySearchTreeNode<T> | null {
     return this._parent;
   }
 }

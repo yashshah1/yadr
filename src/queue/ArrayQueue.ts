@@ -7,14 +7,14 @@
  * @class ArrayQueue
  * implements FIFO using JS Arrays
  */
-export default class ArrayQueue {
+export default class ArrayQueue<T> {
   /**
    * Initialise the class
    * @constructor
    * @param arr A list of elements to initialise the Queue
    */
   private _offset: number;
-  private _q: any[];
+  private _q: T[];
   constructor() {
     this._offset = 0; // To speed up dequeue
     this._q = [];
@@ -25,7 +25,7 @@ export default class ArrayQueue {
    * @param {*} e Element to be enqueued
    * @return {undefined}
    */
-  enqueue(e: any): void {
+  enqueue(e: T): void {
     this._q.push(e);
   }
 
@@ -33,7 +33,7 @@ export default class ArrayQueue {
    * Dequeues an element
    * @return {*}
    */
-  dequeue(): any | null {
+  dequeue(): T | null {
     /*
      * There is a novice implementation
      * Where all we can do is `return this._q.pop()`
@@ -48,7 +48,7 @@ export default class ArrayQueue {
      */
     if (this.isEmpty()) return null;
 
-    const returnValue: any = this.front();
+    const returnValue: T = this.front() as T;
     this._offset += 1;
 
     if (this._offset * 2 < this._q.length) return returnValue;
@@ -73,7 +73,7 @@ export default class ArrayQueue {
    * Returns the oldest element still in the queue
    * @return {*}
    */
-  front(): any {
+  front(): T | null {
     if (this.isEmpty()) return null;
     return this._q[this._offset];
   }
@@ -82,7 +82,7 @@ export default class ArrayQueue {
    * Returns the newest element in the queue
    * @return {*}
    */
-  back(): any {
+  back(): T | null {
     if (this.isEmpty()) return null;
     return this._q[this._q.length - 1];
   }
@@ -110,8 +110,8 @@ export default class ArrayQueue {
    * First element of the list will be the oldest
    * element in the queue.
    */
-  toArray(): any[] {
-    const returnValue: any[] = [];
+  toArray(): T[] {
+    const returnValue: T[] = [];
     if (!this.isEmpty())
       for (let i = this._offset; i < this._q.length; i++)
         returnValue.push(this._q[i]);

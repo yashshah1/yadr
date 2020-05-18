@@ -7,13 +7,13 @@
  * @class ArrayStack
  * implements LIFO using JS Arrays
  */
-export default class ArrayStack {
+export default class ArrayStack<T> {
   /**
    * Initialise the class
    * @constructor
    */
   private _offset: number;
-  private _s: any[];
+  private _s: T[];
   constructor() {
     this._offset = 0; // To speed up pop
     this._s = [];
@@ -24,7 +24,7 @@ export default class ArrayStack {
    * @param {*} e Element to be pushed
    * @return {undefined}
    */
-  push(e: any): void {
+  push(e: T): void {
     this._s[this._offset++] = e;
   }
 
@@ -32,7 +32,7 @@ export default class ArrayStack {
    * pops an element
    * @return {*}
    */
-  pop(): any {
+  pop(): T | null {
     if (this.isEmpty()) return null;
 
     const returnValue: any = this.top();
@@ -47,7 +47,7 @@ export default class ArrayStack {
     return returnValue;
   }
 
-  top(): any {
+  top(): T | null {
     if (this.isEmpty()) return null;
     return this._s[this._offset - 1];
   }
@@ -83,7 +83,7 @@ export default class ArrayStack {
    * First element of the list will be the oldest
    * element in the stack.
    */
-  toArray(): any[] {
+  toArray(): T[] {
     const returnValue: any[] = [];
     if (!this.isEmpty())
       for (let i = 0; i < this._offset; i++) returnValue.push(this._s[i]);
