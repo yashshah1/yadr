@@ -24,7 +24,7 @@ Targets to be a hlighly powerful, low dependency set of datastructures written i
   - [Naming Convention](#naming-convention)
 - [Testing](#testing)
 - [License](#license)
-  - [Contributors ✨](#contributors-%e2%9c%a8)
+  - [Contributors ✨](#contributors-)
 
 # Install
 
@@ -65,7 +65,7 @@ import ds from 'yard-ts';
   - AVL Tree - done (tests pending)
 - Trie - done (tests pending)
 - Graph - in progress
-- Heap - in progress
+- Heap - done (tests in progress)
 - Priority Queue - in progress
 - HashTable - in progress
 
