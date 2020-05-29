@@ -20,6 +20,10 @@ export default class BaseHeap<T> {
     this._heap = [];
   }
 
+  getSize(): number {
+    return this._heap.length;
+  }
+
   hasLeftChild(parentIndex: number): boolean {
     return this.getLeftChildIndex(parentIndex) < this._heap.length;
   }
@@ -115,7 +119,7 @@ export default class BaseHeap<T> {
 
   peek(): T | null {
     if (this._heap.length === 0) return null;
-    return this._heap[this._heap.length];
+    return this._heap[0];
   }
 
   poll(): T | null {
@@ -124,7 +128,7 @@ export default class BaseHeap<T> {
 
     const temp: T = this._heap[0];
     this._heap[0] = this._heap.pop() as T;
-
+    this.heapifyDown();
     return temp;
   }
 
@@ -168,7 +172,7 @@ export default class BaseHeap<T> {
   }
 
   isEmpty(): boolean {
-    return !!this._heap.length;
+    return this._heap.length === 0;
   }
 
   toString(): string {
