@@ -17,7 +17,7 @@ export default class DoublyLinkedList<T> {
   private _count: number;
   private _head: DoublyLinkedListNode<T> | null;
   private _tail: DoublyLinkedListNode<T> | null;
-  private _compare: ComparatorClass;
+  private _compare: ComparatorClass<T>;
 
   /**
    * @param compareFunction

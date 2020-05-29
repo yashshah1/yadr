@@ -17,7 +17,7 @@ export default class SinglyLinkedList<T> {
   private _count: number;
   private _head: SinglyLinkedListNode<T> | null;
   private _tail: SinglyLinkedListNode<T> | null;
-  private _compare: ComparatorClass;
+  private _compare: ComparatorClass<T>;
 
   /**
    * @param compareFunction

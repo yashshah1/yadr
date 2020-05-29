@@ -8,7 +8,7 @@ import ComparatorClass from '../../utils/Comparator';
 
 export default class AVLTree<T> {
   private _root: AVLTreeNode<T> | null;
-  private _compare: ComparatorClass;
+  private _compare: ComparatorClass<T>;
   constructor(compareFunction?: (x: T, y: T) => number) {
     this._root = null;
     this._compare = new ComparatorClass(compareFunction);
