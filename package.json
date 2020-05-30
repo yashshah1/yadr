@@ -21,7 +21,8 @@
     "prepublishOnly": "npm run format && npm run lint && npm run test -- --coverage"
   },
   "files": [
-    "lib/**/*"
+    "lib/**/*",
+    "dist/*"
   ],
   "author": "Yash Shah <yashah1234@gmail.com>",
   "repository": {
