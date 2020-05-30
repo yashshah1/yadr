@@ -1,8 +1,9 @@
 import LinkedListStack from '../LinkedListStack';
-describe('Array stack', () => {
+describe('LinkedList stack', () => {
   it('Should be created', () => {
     const stack = new LinkedListStack();
     expect(stack.size()).toEqual(0);
+    expect(stack.isEmpty()).toBeTruthy();
   });
   describe('Should push', () => {
     it('one element', () => {
