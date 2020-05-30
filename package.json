@@ -10,7 +10,9 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run compile && npm run build:browser",
+    "compile": "tsc",
+    "build:browser": "./scripts/browser_jugaad.sh && mkdir -p \"./dist\" &&  browserify ./lib/index.js | uglifyjs -cm --rename > ./dist/bundle.min.js",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --coverage",
@@ -33,11 +35,13 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^25.2.1",
+    "browserify": "^16.5.1",
     "jest": "<26.0.0",
     "prettier": "^2.0.5",
     "ts-jest": "^25.5.1",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "uglify-js": "^3.9.4"
   }
 }

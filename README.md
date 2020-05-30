@@ -19,6 +19,7 @@ Targets to be a hlighly powerful, low dependency set of datastructures written i
 - [Usage](#usage)
   - [CommonJS](#commonjs)
   - [ES](#es)
+  - [Browser (18 Kb)](#browser-18-kb)
 - [Status](#status)
 - [Contributing](#contributing)
   - [Naming Convention](#naming-convention)
@@ -47,6 +48,11 @@ Targets to be a hlighly powerful, low dependency set of datastructures written i
 
 ```js
 import ds from 'yard-ts';
+```
+
+## Browser (18 Kb)
+```html
+<script src="https://cdn.jsdelivr.net/gh/yashshah1/yard-ts/dist/bundle.min.js">
 ```
 
 # Status
