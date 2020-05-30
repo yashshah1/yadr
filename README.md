@@ -66,7 +66,7 @@ import ds from 'yard-ts';
 - Trie - done (tests pending)
 - Graph - in progress
 - Heap - done (tests in progress)
-- Priority Queue - in progress
+- Priority Queue - done (tests pending)
 - HashTable - in progress
 
 # Contributing
