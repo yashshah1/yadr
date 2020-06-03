@@ -12,7 +12,7 @@ import { getComparatorFunction, PriorityQueueObject } from './utils';
  */
 export default class PriorityQueue<T> extends MaxHeap<PriorityQueueObject<T>> {
   constructor() {
-    super(getComparatorFunction());
+    super(getComparatorFunction<T>());
   }
 
   getSize(): number {

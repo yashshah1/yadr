@@ -174,13 +174,25 @@ export default class DoublyLinkedList<T> {
     this._count = 0;
   }
 
-  filter(callback: (value: any) => boolean): DoublyLinkedList<T> | null {
+  map<U>(callback: (value: T) => U): DoublyLinkedList<U> {
+    const returnValue: DoublyLinkedList<U> = new DoublyLinkedList<U>();
+    if (this.isEmpty()) return returnValue;
+
+    let curr: DoublyLinkedListNode<T> | null = this._head;
+    while (curr) {
+      returnValue.append(callback(curr.value));
+      curr = curr.next;
+    }
+    return returnValue;
+  }
+
+  filter(callback: (value: any) => boolean): DoublyLinkedList<T> {
     // TODO: Isolate the loop into a foreach function
     // if (typeof callback !== 'function')
     //   throw new Error('callback must be a function');
-    if (this.isEmpty()) return null;
-
     const returnValue: DoublyLinkedList<T> = new DoublyLinkedList();
+    if (this.isEmpty()) return returnValue;
+
     let curr: DoublyLinkedListNode<T> | null = this._head;
     while (curr) {
       if (callback(curr.value)) returnValue.append(curr.value);

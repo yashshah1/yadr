@@ -188,7 +188,7 @@ describe('Singly Linked List', () => {
   describe('Should work with filter', () => {
     it('Empty Linked List', () => {
       const testList = new SinglyLinkedList();
-      expect(testList.filter(() => true)).toBeNull();
+      expect(testList.filter(() => true).length).toEqual(0);
     });
 
     it('Linked List with real condition', () => {
@@ -206,5 +206,13 @@ describe('Singly Linked List', () => {
       expect(newTestList!.tail).toBeNull();
       expect(newTestList!.length).toEqual(0);
     });
+  });
+
+  it('Should Map', () => {
+    const testList = SinglyLinkedList.fromArray([1, 2, 3, 4]);
+    const newTestList = testList.map((e) => e * 2);
+    expect(newTestList!.head).toEqual(2);
+    expect(newTestList!.tail).toEqual(8);
+    expect(newTestList!.length).toEqual(4);
   });
 });

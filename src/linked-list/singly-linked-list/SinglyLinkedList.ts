@@ -177,12 +177,23 @@ export default class SinglyLinkedList<T> {
     this._count = 0;
   }
 
-  filter(callback: (value: T) => boolean): SinglyLinkedList<T> | null {
+  map<U>(callback: (value: T) => U): SinglyLinkedList<U> {
+    const returnValue: SinglyLinkedList<U> = new SinglyLinkedList<U>();
+    if (this.isEmpty()) return returnValue;
+
+    let curr: SinglyLinkedListNode<T> | null = this._head;
+    while (curr) {
+      returnValue.append(callback(curr.value));
+      curr = curr.next;
+    }
+    return returnValue;
+  }
+
+  filter(callback: (value: T) => boolean): SinglyLinkedList<T> {
     // TODO: Isolate the loop into a foreach function
     // if (typeof callback !== 'function') throw new Error('callback must be a function');
-    if (this.isEmpty()) return null;
-
     const returnValue: SinglyLinkedList<T> = new SinglyLinkedList();
+    if (this.isEmpty()) return returnValue;
     let curr: SinglyLinkedListNode<T> | null = this._head;
     while (curr) {
       if (callback(curr.value)) returnValue.append(curr.value);
